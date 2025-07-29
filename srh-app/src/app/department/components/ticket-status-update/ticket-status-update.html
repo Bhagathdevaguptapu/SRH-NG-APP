@@ -1,0 +1,34 @@
+<div class="status-update-container">
+  <h2>Update Ticket Status</h2>
+
+  <div class="form-group">
+    <label for="ticketId">Ticket ID:</label>
+    <input
+      type="number"
+      id="ticketId"
+      [(ngModel)]="ticketId"
+      placeholder="Enter Ticket ID"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="newStatus">New Status:</label>
+    <select id="newStatus" [(ngModel)]="newStatus">
+      <option value="" disabled>Select status</option>
+      <option *ngFor="let status of statusOptions" [value]="status">
+        {{ status }}
+      </option>
+    </select>
+  </div>
+
+  <button (click)="updateStatus()" [disabled]="loading">Update Status</button>
+
+  <p class="loading" *ngIf="loading">Updating status...</p>
+  <p class="error" *ngIf="isError">{{ errorMsg }}</p>
+  <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+</div>
+
+
+<a class="back-arrow" href="/">
+  ← Back
+</a>

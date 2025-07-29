@@ -1,0 +1,52 @@
+<div class="ticket-container">
+  <h2>🎫 Department Ticket Viewer</h2>
+
+  <div class="form-group">
+    <label for="deptId">Enter Department ID:</label>
+    <input type="number" id="deptId" [(ngModel)]="departmentId" />
+    <button (click)="fetchTickets()">Fetch Tickets</button>
+  </div>
+
+  <p class="error" *ngIf="isError">{{ errorMsg }}</p>
+  <p class="loading" *ngIf="loading">Loading tickets...</p>
+
+  <table *ngIf="!isError && tickets.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let ticket of tickets">
+        <tr>
+          <td>{{ ticket.ticketId }}</td> <!-- ✅ Corrected from ticket.id -->
+          <td>{{ ticket.status }}</td>
+          <td>{{ ticket.description }}</td>
+          <td>{{ ticket.createdAt | date: 'short' }}</td>
+          <td>{{ ticket.updatedAt | date: 'short' }}</td>
+        </tr>
+
+        <!-- Optional: Show comments -->
+        <tr *ngIf="ticket.comments && ticket.comments.length > 0">
+          <td colspan="5">
+            <strong>💬 Comments:</strong>
+            <ul>
+              <li *ngFor="let comment of ticket.comments">
+                <strong>{{ comment.commenterName }}:</strong> {{ comment.commentText }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+
+<a class="back-arrow" href="/">
+  ← Back
+</a>

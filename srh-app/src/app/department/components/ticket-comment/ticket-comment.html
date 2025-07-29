@@ -1,0 +1,36 @@
+<a class="back-link" href="/">
+  ← Back
+</a>
+
+<div class="card-container">
+  <div class="comment-card">
+    <div class="comment-left">
+      <h2> Add Comment</h2>
+
+      <div class="form-group">
+        <label for="ticketId">Ticket ID</label>
+        <input type="number" id="ticketId" [(ngModel)]="ticketId" placeholder="Enter Ticket ID" />
+      </div>
+
+      <div class="form-group">
+        <label for="commenterName">Your Name</label>
+        <input type="text" id="commenterName" [(ngModel)]="commenterName" placeholder="Enter your name" />
+      </div>
+
+      <div class="form-group">
+        <label for="commentText">Comment</label>
+        <textarea id="commentText" [(ngModel)]="commentText" placeholder="Write your comment..."></textarea>
+      </div>
+
+      <button (click)="submitComment()" [disabled]="loading">Submit</button>
+
+      <p class="loading" *ngIf="loading">Submitting comment...</p>
+      <p class="error" *ngIf="isError">{{ errorMsg }}</p>
+      <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+    </div>
+
+    <div class="comment-right">
+      <img src="https://previews.123rf.com/images/rastudio/rastudio2211/rastudio221100203/193897277-software-tester-isolated-cartoon-vector-illustrations.jpg" alt="Illustration" />
+    </div>
+  </div>
+</div>

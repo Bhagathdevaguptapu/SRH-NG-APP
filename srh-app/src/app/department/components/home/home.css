@@ -1,0 +1,130 @@
+:root {
+  --primary: #ff6f61;
+  --light: #fff;
+  --dark: #2c2c2c;
+  --bg: #f9f9f9;
+  --shadow: rgba(0, 0, 0, 0.15);
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fff5f3, #fffafa);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* Main Wrapper */
+.dashboard-wrapper {
+  width: 95%;
+  max-width: 1100px;
+  padding: 20px;
+}
+
+/* Container */
+.dashboard-container {
+  display: flex;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 15px 40px var(--shadow);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-container:hover {
+  transform: translateY(-5px);
+}
+
+/* Left Navigation Panel */
+.dashboard-left {
+  flex: 1;
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dashboard-left h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.nav-card {
+  background: white;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.nav-card a {
+  display: block;
+  padding: 18px 22px;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-card a:hover {
+  color: #d94e41;
+}
+
+/* Right Image Panel */
+.dashboard-right {
+  flex: 1;
+  position: relative;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.dashboard-right img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transform: scale(1);
+  transition: transform 6s ease;
+  border-radius: 0 0 0 50px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.dashboard-right:hover img {
+  transform: scale(1.05) rotate(0.2deg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .dashboard-right {
+    order: -1;
+    padding: 20px;
+  }
+
+  .dashboard-left h2 {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-right img {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
