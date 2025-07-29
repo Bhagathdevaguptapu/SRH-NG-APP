@@ -1,0 +1,104 @@
+.employee-ticket-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.07);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #34495e;
+}
+
+.employee-ticket-container h2 {
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.employee-ticket-container input[type="number"] {
+  width: 200px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  margin-right: 12px;
+  transition: border-color 0.3s ease;
+}
+
+.employee-ticket-container input[type="number"]:focus {
+  outline: none;
+  border-color: #2980b9;
+}
+
+button {
+  background-color: #2980b9;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgb(41 128 185 / 0.4);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1c5980;
+}
+
+.error {
+  color: #e74c3c;
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+.loading {
+  color: #2980b9;
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+.employee-card {
+  background: #f9fbff;
+  border-left: 6px solid #2980b9;
+  padding: 20px 25px;
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
+}
+
+.employee-card h3 {
+  margin-bottom: 18px;
+  color: #2c3e50;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.ticket-table thead {
+  background-color: #2980b9;
+  color: white;
+  user-select: none;
+}
+
+.ticket-table th, .ticket-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e1e8f0;
+}
+
+.ticket-table tbody tr:hover {
+  background-color: #e6f0fa;
+}
+
+.employee-card p {
+  font-style: italic;
+  color: #7f8c8d;
+  margin-top: 15px;
+}

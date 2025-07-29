@@ -1,0 +1,35 @@
+<div class="employee-ticket-container">
+  <h2>📋 Employee Tickets Overview</h2>
+
+<button (click)="fetchAllEmployeeTickets()">Load Employee Tickets</button>
+
+  <p class="error" *ngIf="isError">{{ errorMsg }}</p>
+  <p class="loading" *ngIf="loading">Loading employee tickets...</p>
+
+  <div *ngIf="!isError && employees.length > 0">
+    <div *ngFor="let emp of employees" class="employee-card">
+      <h3>{{ emp.name }} ({{ emp.email }})</h3>
+      <table *ngIf="emp.tickets && emp.tickets.length > 0" class="ticket-table">
+        <thead>
+          <tr>
+            <th>Ticket ID</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of emp.tickets">
+            <td>{{ ticket.ticketId }}</td>
+            <td>{{ ticket.status }}</td>
+            <td>{{ ticket.description || '—' }}</td>
+            <td>{{ ticket.createdAt | date: 'short' }}</td>
+            <td>{{ ticket.updatedAt | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!emp.tickets || emp.tickets.length === 0">No tickets assigned.</p>
+    </div>
+  </div>
+</div>

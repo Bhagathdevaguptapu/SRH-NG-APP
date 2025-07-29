@@ -1,0 +1,119 @@
+/* 🌈 Beautiful animated background */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb, #fbc7b8, #fce4ec);
+  background-size: 400% 400%;
+  animation: gradientAnimation 20s ease infinite;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism container */
+.workflow-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 40px;
+  background: rgba(255 255 255 / 0.25);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  box-shadow:
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    0 0 0 1px rgba(255, 255, 255, 0.18);
+  color: #1b263b;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  border: 1px solid rgba(255 255 255 / 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.workflow-container:hover {
+  box-shadow:
+    0 12px 48px 0 rgba(31, 38, 135, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Header */
+.workflow-container h1 {
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #2c3e50;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 3rem;
+}
+
+/* Card grid */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Card styles */
+.workflow-card {
+  background-color: #ffffffcc;
+  border: 2px solid #4a90e2;
+  border-radius: 15px;
+  width: 230px;
+  padding: 25px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #4a90e2;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 6px 20px rgba(74, 144, 226, 0.15),
+    0 1px 5px rgba(74, 144, 226, 0.1);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  cursor: pointer;
+}
+
+.workflow-card:hover {
+  background-color: #4a90e2;
+  color: white;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow:
+    0 15px 40px rgba(74, 144, 226, 0.5),
+    0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+.workflow-card h3 {
+  margin: 15px 0 10px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.workflow-card p {
+  font-size: 1.05rem;
+  color: inherit;
+  line-height: 1.5;
+}
+
+/* Responsive: Full-width cards on small screens */
+@media (max-width: 600px) {
+  .workflow-card {
+    width: 100%;
+  }
+
+  .workflow-container {
+    margin: 30px 15px;
+    padding: 35px 25px;
+  }
+
+  .workflow-container h1 {
+    font-size: 2.2rem;
+  }
+}
