@@ -1,0 +1,24 @@
+<div class="card-container">
+  <div class="card">
+    <div class="card-header">
+      <h3>Cancel a Ticket</h3>
+    </div>
+
+    <div class="card-body">
+      <div class="form-group">
+        <label for="ticketId">Ticket ID:</label>
+        <input type="number" id="ticketId" class="form-control"
+               [(ngModel)]="ticketId"
+               placeholder="Enter Ticket ID">
+      </div>
+
+      <button class="btn-cancel" (click)="cancelTicket()">Cancel Ticket</button>
+
+      <div class="status-message">
+        <p *ngIf="loading" class="loading">Cancelling ticket...</p>
+        <p *ngIf="message" class="success">{{ message }}</p>
+        <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+      </div>
+    </div>
+  </div>
+</div>

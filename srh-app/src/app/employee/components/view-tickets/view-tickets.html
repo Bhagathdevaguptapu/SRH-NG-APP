@@ -1,0 +1,33 @@
+<div class="view-container">
+  <h2>🎟️ View My Tickets</h2>
+
+  <div class="search-bar">
+    <input
+      type="number"
+      [(ngModel)]="employeeId"
+      placeholder="Enter Employee ID"
+      class="input-id"
+    />
+    <button class="get-btn" (click)="viewTickets()">GET</button>
+  </div>
+
+  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+  <p class="loading" *ngIf="loading">Loading tickets...</p>
+
+  <div *ngFor="let ticket of tickets" class="ticket-card">
+    <div class="ticket-header">
+      <div class="ticket-title">{{ ticket.title }}</div>
+      <button class="view-btn" (click)="toggleDetails(ticket)">
+        {{ ticket.expanded ? 'Hide' : 'View Details' }}
+      </button>
+    </div>
+
+    <div class="ticket-details" *ngIf="ticket.expanded">
+      <p><strong>Ticket ID:</strong> {{ ticket.ticketId }}</p>
+      <p><strong>Description:</strong> {{ ticket.description }}</p>
+      <p><strong>Status:</strong> {{ ticket.status }}</p>
+      <p><strong>Created At:</strong> {{ ticket.createdAt | date: 'short' }}</p>
+    </div>
+  </div>
+</div>
+
