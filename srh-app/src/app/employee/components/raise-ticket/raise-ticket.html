@@ -18,6 +18,11 @@
       <input type="number" id="employeeId" [(ngModel)]="ticket.employeeId" name="employeeId" placeholder="e.g., 1234" required />
     </div>
 
-    <button type="submit" class="submit-btn">🚀 Submit Ticket</button>
+    <button type="submit" class="submit-btn" [disabled]="loading">
+      {{ loading ? 'Submitting...' : '🚀 Submit Ticket' }}
+    </button>
   </form>
+
+  <p class="success-msg" *ngIf="message">{{ message }}</p>
+  <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
 </div>

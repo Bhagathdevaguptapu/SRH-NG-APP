@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FeedbackDTO } from '../../models/ticket.model';
 import { EmployeeTicketService } from '../../services/employee-ticket';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-give-feedback',
@@ -22,11 +23,11 @@ export class GiveFeedback {
   errorMsg: string = '';
   loading: boolean = false;
 
-  constructor(private ticketService: EmployeeTicketService) {}
+  constructor(private ticketService: EmployeeTicketService, private router: Router) {}
 
   submitFeedback() {
     if (!this.feedback.ticketId || !this.feedback.feedbackText.trim()) {
-      alert("Ticket ID and feedback are required.");
+      this.errorMsg = "Ticket ID and feedback are required.";
       return;
     }
 
@@ -38,6 +39,11 @@ export class GiveFeedback {
       next: (res: any) => {
         this.loading = false;
         this.message = res.message || "Feedback submitted successfully.";
+
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 2000);
       },
       error: (err: any) => {
         this.loading = false;

@@ -1,23 +1,35 @@
-<!-- <h2>Employee Dashboard</h2>
-
-<a href="/raise-ticket">Raise Ticket</a><br/><br/>
-<a href="/view-tickets">View My Tickets</a><br/><br/>
-<a href="/cancel-ticket">Cancel Ticket</a><br/><br/>
-<a href="/give-feedback">Give Feedback</a> -->
-
 <div class="dashboard-wrapper">
-  <div class="dashboard-card">
+  <div class="glass-card">
     <div class="dashboard-header">
-      <h2>Employee Dashboard</h2>
+      <h1>👩‍💼 Employee Dashboard</h1>
+      <p class="subtitle">Welcome! Select an option to manage your tickets efficiently.</p>
     </div>
 
     <div class="card-grid">
-      <div class="card"><a routerLink="/raise-ticket">Raise Ticket</a></div>
-      <div class="card"><a routerLink="/view-tickets">View My Tickets</a></div>
-      <div class="card"><a routerLink="/cancel-ticket">Cancel Ticket</a></div>
-      <div class="card"><a routerLink="/give-feedback">Give Feedback</a></div>
+      <div class="action-card raise">
+        <a routerLink="/raise-ticket">
+          <span class="emoji">📝</span>
+          <span>Raise Ticket</span>
+        </a>
+      </div>
+      <div class="action-card view">
+        <a routerLink="/view-tickets">
+          <span class="emoji">📄</span>
+          <span>View My Tickets</span>
+        </a>
+      </div>
+      <div class="action-card cancel">
+        <a routerLink="/cancel-ticket">
+          <span class="emoji">❌</span>
+          <span>Cancel Ticket</span>
+        </a>
+      </div>
+      <div class="action-card feedback">
+        <a routerLink="/give-feedback">
+          <span class="emoji">💬</span>
+          <span>Give Feedback</span>
+        </a>
+      </div>
     </div>
   </div>
 </div>
-
-

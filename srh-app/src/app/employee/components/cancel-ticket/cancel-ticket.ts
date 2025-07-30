@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmployeeTicketService } from '../../services/employee-ticket';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cancel-ticket',
@@ -17,11 +18,11 @@ export class CancelTicket {
   errorMsg: string = '';
   loading: boolean = false;
 
-  constructor(private ticketService: EmployeeTicketService) {}
+  constructor(private ticketService: EmployeeTicketService, private router: Router) {}
 
   cancelTicket() {
     if (!this.ticketId || this.ticketId <= 0) {
-      alert("Please enter a valid Ticket ID.");
+      this.errorMsg = "Please enter a valid Ticket ID.";
       return;
     }
 
@@ -33,6 +34,11 @@ export class CancelTicket {
       next: (res: any) => {
         this.loading = false;
         this.message = res.message || "Ticket cancelled successfully.";
+
+        // Delay redirect to home
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 2000);
       },
       error: (err: any) => {
         this.loading = false;

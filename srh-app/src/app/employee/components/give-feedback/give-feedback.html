@@ -7,20 +7,33 @@
     <div class="card-body">
       <div class="form-group">
         <label for="ticketId">Ticket ID:</label>
-        <input type="number" id="ticketId" class="form-control"
-               [(ngModel)]="feedback.ticketId"
-               placeholder="Enter Ticket ID">
+        <input
+          type="number"
+          id="ticketId"
+          class="form-control"
+          [(ngModel)]="feedback.ticketId"
+          placeholder="Enter Ticket ID"
+        />
       </div>
 
       <div class="form-group">
         <label for="feedbackText">Feedback:</label>
-        <textarea id="feedbackText" class="form-control"
-                  rows="4"
-                  [(ngModel)]="feedback.feedbackText"
-                  placeholder="Enter your feedback"></textarea>
+        <textarea
+          id="feedbackText"
+          class="form-control"
+          rows="4"
+          [(ngModel)]="feedback.feedbackText"
+          placeholder="Enter your feedback"
+        ></textarea>
       </div>
 
-      <button class="btn-submit" (click)="submitFeedback()">Submit Feedback</button>
+      <button
+        class="btn-submit"
+        (click)="submitFeedback()"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Submitting...' : 'Submit Feedback' }}
+      </button>
 
       <div class="status-message">
         <p *ngIf="loading" class="loading">Submitting feedback...</p>

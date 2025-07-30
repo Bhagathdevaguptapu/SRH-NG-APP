@@ -71,3 +71,16 @@
   background-color: #0056b3;
   transform: scale(1.02);
 }
+.success-msg {
+  margin-top: 20px;
+  color: #388e3c;
+  text-align: center;
+  font-weight: 600;
+}
+
+.error-msg {
+  margin-top: 20px;
+  color: #d32f2f;
+  text-align: center;
+  font-weight: 600;
+}

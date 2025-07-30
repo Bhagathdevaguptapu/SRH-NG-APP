@@ -7,12 +7,18 @@
     <div class="card-body">
       <div class="form-group">
         <label for="ticketId">Ticket ID:</label>
-        <input type="number" id="ticketId" class="form-control"
-               [(ngModel)]="ticketId"
-               placeholder="Enter Ticket ID">
+        <input
+          type="number"
+          id="ticketId"
+          class="form-control"
+          [(ngModel)]="ticketId"
+          placeholder="Enter Ticket ID"
+        />
       </div>
 
-      <button class="btn-cancel" (click)="cancelTicket()">Cancel Ticket</button>
+      <button class="btn-cancel" (click)="cancelTicket()" [disabled]="loading">
+        {{ loading ? 'Cancelling...' : 'Cancel Ticket' }}
+      </button>
 
       <div class="status-message">
         <p *ngIf="loading" class="loading">Cancelling ticket...</p>

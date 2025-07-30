@@ -90,3 +90,7 @@ textarea.form-control:focus {
 .error {
   color: #d32f2f;
 }
+.success,
+.error {
+  font-weight: 600;
+}

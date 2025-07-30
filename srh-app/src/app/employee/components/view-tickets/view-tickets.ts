@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EmployeeTicketService } from '../../services/employee-ticket';
 import { Ticket } from '../../models/ticket.model';
 
@@ -20,7 +21,10 @@ export class ViewTicketsComponent {
   errorMsg: string = '';
   loading: boolean = false;
 
-  constructor(private service: EmployeeTicketService) {}
+  constructor(
+    private service: EmployeeTicketService,
+    private router: Router
+  ) {}
 
   viewTickets() {
     this.errorMsg = '';
@@ -55,5 +59,9 @@ export class ViewTicketsComponent {
 
   toggleDetails(ticket: TicketWithExpand) {
     ticket.expanded = !ticket.expanded;
+  }
+
+  goBack() {
+    this.router.navigate(['/']);
   }
 }

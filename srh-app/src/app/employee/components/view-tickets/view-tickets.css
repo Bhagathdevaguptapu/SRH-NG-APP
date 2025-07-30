@@ -102,3 +102,46 @@ h2 {
   font-style: italic;
   color: #555;
 }
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.back-btn {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.back-btn {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}

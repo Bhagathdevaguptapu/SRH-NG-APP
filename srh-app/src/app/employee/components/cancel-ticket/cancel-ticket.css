@@ -30,7 +30,7 @@
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 label {
@@ -57,18 +57,20 @@ input.form-control:focus {
 
 .btn-cancel {
   width: 100%;
-  padding: 10px;
-  background-color: #64b5f6; /* light blue */
+  padding: 12px;
+  background-color: #64b5f6;
   color: white;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 15px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn-cancel:hover {
-  background-color: #1e88e5; /* deeper blue */
+  background-color: #1e88e5;
+  transform: scale(1.02);
 }
 
 .status-message {
@@ -82,8 +84,10 @@ input.form-control:focus {
 
 .success {
   color: #388e3c;
+  font-weight: 600;
 }
 
 .error {
   color: #d32f2f;
+  font-weight: 600;
 }
