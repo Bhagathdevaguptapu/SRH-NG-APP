@@ -62,6 +62,6 @@ export class ViewTicketsComponent {
   }
 
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['home']);
   }
 }

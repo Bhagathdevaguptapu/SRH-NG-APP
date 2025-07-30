@@ -5,11 +5,12 @@ import { RaiseTicket } from './employee/components/raise-ticket/raise-ticket';
 import { CancelTicket } from './employee/components/cancel-ticket/cancel-ticket';
 import { GiveFeedback } from './employee/components/give-feedback/give-feedback';
 import { ViewTicketsComponent } from './employee/components/view-tickets/view-tickets';
+import { Login } from './login/login/login';
 
 
 export const routes: Routes = [
     {
-        path:'',
+        path:'home',
         component:Home
     },
     {
@@ -27,7 +28,10 @@ export const routes: Routes = [
     {
         path:'give-feedback',
         component:GiveFeedback
+    },
+    {
+        path:'',
+        component:Login
     }
-
    
 ];

@@ -37,7 +37,7 @@ export class CancelTicket {
 
         // Delay redirect to home
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['home']);
         }, 2000);
       },
       error: (err: any) => {
