@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
 import { Home } from './admin/components/home/home';
-import { AdminLogin } from './admin/components/admin-login/admin-login';
 import { AllEmployeeTickets } from './admin/components/all-employee-tickets/all-employee-tickets';
 import { AssignTicket } from './admin/components/assign-ticket/assign-ticket';
 import { CancelTicket } from './admin/components/cancel-ticket/cancel-ticket';
 import { EmployeeTicketList } from './admin/components/employee-ticket-list/employee-ticket-list';
+import { Login } from './login/login/login';
 
 export const routes: Routes = [{
-    path: '',
+    path: 'admin-home',
     component: Home
 }, {
-    path: 'admin-login',
-    component: AdminLogin
+    path: '',
+    component: Login
 }, {
     path: 'all-employee-tickets',
     component: AllEmployeeTickets

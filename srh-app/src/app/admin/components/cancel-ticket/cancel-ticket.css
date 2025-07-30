@@ -2,10 +2,10 @@
   max-width: 500px;
   margin: 50px auto;
   padding: 30px 25px;
-  background: linear-gradient(to bottom right, #fff5f5, #ffecec);
-  border-radius: 15px;
+  background: linear-gradient(to bottom right, #fff7f7, #ffecec);
+  border-radius: 16px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   color: #b71c1c;
   transition: all 0.3s ease-in-out;
 }
@@ -14,36 +14,37 @@
   text-align: center;
   margin-bottom: 25px;
   color: #d32f2f;
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.7rem;
+  font-weight: bold;
 }
 
 .form-group {
   margin-bottom: 20px;
-  text-align: left;
 }
 
 label {
   display: block;
-  font-weight: 600;
+  font-weight: bold;
   margin-bottom: 6px;
   color: #8b0000;
+  font-size: 1rem;
 }
 
 input {
   width: 100%;
   padding: 12px 14px;
   font-size: 16px;
-  border: 1.5px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 8px;
   box-sizing: border-box;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.2s ease;
 }
 
 input:focus {
   border-color: #d32f2f;
-  outline: none;
+  box-shadow: 0 0 6px rgba(211, 47, 47, 0.3);
   background-color: #ffffff;
+  outline: none;
 }
 
 button {
@@ -51,17 +52,19 @@ button {
   padding: 12px;
   background: #d32f2f;
   color: white;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.2s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(211, 47, 47, 0.3);
 }
 
 button:hover {
   background: #b71c1c;
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+  box-shadow: 0 6px 18px rgba(211, 47, 47, 0.4);
+  transform: translateY(-2px);
 }
 
 .loading,
@@ -69,7 +72,8 @@ button:hover {
 .success {
   margin-top: 15px;
   text-align: center;
-  font-size: 15px;
+  font-size: 0.95rem;
+  font-weight: bold;
 }
 
 .loading {
@@ -78,16 +82,24 @@ button:hover {
 
 .error {
   color: #c62828;
-  font-weight: 500;
 }
 
 .success {
   color: #2e7d32;
-  font-weight: 500;
 }
+
 @media (max-width: 600px) {
   .cancel-ticket-container {
     margin: 20px;
     padding: 20px;
+  }
+
+  .cancel-ticket-container h2 {
+    font-size: 1.4rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px;
   }
 }

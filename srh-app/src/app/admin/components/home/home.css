@@ -117,3 +117,50 @@ body {
     font-size: 2.2rem;
   }
 }
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.workflow-container h1 {
+  animation: blink 1.5s infinite;
+}
+
+
+footer {
+  text-align: center;
+  padding: 20px 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  font-size: 0.95rem;
+  color: #2c3e50;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 0 0 15px 15px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+footer p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.97rem;
+  
+}
+
+@media (max-width: 600px) {
+  footer {
+    font-size: 0.97rem;
+    padding: 16px 8px;
+    color: #4a90e2;
+    
+  }
+}
+
+
