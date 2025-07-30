@@ -1,6 +1,6 @@
 <div class="ticket-detail-container">
-  <h2>🛠️ Department Ticket Actions</h2>
-
+  <h2>Department Ticket Actions</h2>
+<img src="https://assets.upstox.com/content/assets/images/cms/2024314/coforge.webp" alt="Logo" class="top-right-logo" />
   <div class="form-group">
     <label for="deptId">Department ID:</label>
     <input type="number" id="deptId" [(ngModel)]="departmentId" />
@@ -11,34 +11,25 @@
   <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
   <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
 
-  <table *ngIf="tickets.length > 0">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Status</th>
-        <th>Description</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ticket of tickets">
-        <td>{{ ticket.ticketId }}</td>
-        <td>{{ ticket.status }}</td>
-        <td>{{ ticket.description }}</td>
-        <td>{{ ticket.createdAt | date: 'short' }}</td>
-        <td>{{ ticket.updatedAt | date: 'short' }}</td>
-        <td>
-          <button *ngIf="ticket.status === 'ASSIGNED'" (click)="acceptTicket(ticket.ticketId)">Accept</button>
-          <button (click)="closeTicket(ticket.ticketId)">Close</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="tickets-list" *ngIf="tickets.length > 0">
+    <div class="ticket-card" *ngFor="let ticket of tickets">
+      <div class="ticket-info">
+        <div><strong>ID:</strong> {{ ticket.ticketId }}</div>
+        <div><strong>Status:</strong> <span class="status {{ ticket.status | lowercase }}">{{ ticket.status }}</span></div>
+        <div><strong>Description:</strong> {{ ticket.description }}</div>
+        <div><strong>Created:</strong> {{ ticket.createdAt | date: 'short' }}</div>
+        <div><strong>Updated:</strong> {{ ticket.updatedAt | date: 'short' }}</div>
+      </div>
+      <div class="ticket-actions" *ngIf="ticket.status !== 'CLOSED' && ticket.status !== 'closed'">
+        <button *ngIf="ticket.status === 'ASSIGNED'" class="accept-btn" (click)="acceptTicket(ticket.ticketId)">Accept</button>
+        <button class="close-btn" (click)="closeTicket(ticket.ticketId)">Close</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
-
-<a class="back-arrow" href="/">
-  ← Back
-</a>
+<a class="back-arrow" href="/">← Back</a>
+<footer>
+  <p>© 2025 Department Ticketing System | Version 1.0</p>
+</footer>

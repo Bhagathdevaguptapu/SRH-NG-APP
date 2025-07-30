@@ -1,6 +1,6 @@
 <div class="ticket-container">
   <h2>🎫 Department Ticket Viewer</h2>
-
+<img src="https://assets.upstox.com/content/assets/images/cms/2024314/coforge.webp" alt="Logo" class="top-right-logo" />
   <div class="form-group">
     <label for="deptId">Enter Department ID:</label>
     <input type="number" id="deptId" [(ngModel)]="departmentId" />
@@ -10,43 +10,37 @@
   <p class="error" *ngIf="isError">{{ errorMsg }}</p>
   <p class="loading" *ngIf="loading">Loading tickets...</p>
 
-  <table *ngIf="!isError && tickets.length > 0">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Status</th>
-        <th>Description</th>
-        <th>Created</th>
-        <th>Updated</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let ticket of tickets">
-        <tr>
-          <td>{{ ticket.ticketId }}</td> <!-- ✅ Corrected from ticket.id -->
-          <td>{{ ticket.status }}</td>
-          <td>{{ ticket.description }}</td>
-          <td>{{ ticket.createdAt | date: 'short' }}</td>
-          <td>{{ ticket.updatedAt | date: 'short' }}</td>
-        </tr>
+  <div class="table-wrapper" *ngIf="!isError && tickets.length > 0">
+    <div class="ticket-cards-container">
+      <div class="ticket-card" *ngFor="let ticket of tickets">
+        <div class="ticket-header">
+          <div class="ticket-id">ID: {{ ticket.ticketId }}</div>
+          <div class="status {{ ticket.status | lowercase }}">
+            {{ ticket.status }}
+          </div>
+        </div>
 
-        <!-- Optional: Show comments -->
-        <tr *ngIf="ticket.comments && ticket.comments.length > 0">
-          <td colspan="5">
-            <strong>💬 Comments:</strong>
-            <ul>
-              <li *ngFor="let comment of ticket.comments">
-                <strong>{{ comment.commenterName }}:</strong> {{ comment.commentText }}
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
+        <div class="ticket-description">{{ ticket.description }}</div>
+
+        <div class="ticket-dates">
+          <div>Created: {{ ticket.createdAt | date: 'short' }}</div>
+          <div>Updated: {{ ticket.updatedAt | date: 'short' }}</div>
+        </div>
+
+        <div class="ticket-comments" *ngIf="ticket.comments && ticket.comments.length > 0">
+          <strong>Comments:</strong>
+          <ul>
+            <li *ngFor="let comment of ticket.comments">
+              <strong>{{ comment.commenterName }}:</strong> {{ comment.commentText }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-<a class="back-arrow" href="/">
-  ← Back
-</a>
+<a class="back-arrow" href="/">← Back</a>
+<footer>
+  <p>© 2025 Department Ticketing System | Version 1.0</p>
+</footer>

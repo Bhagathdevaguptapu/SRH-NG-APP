@@ -1,30 +1,47 @@
-<div class="dashboard-wrapper">
-  <div class="dashboard-container">
-    <div class="dashboard-left">
-      <h2>🎫 Ticketing Dashboard</h2>
+<div class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">
+      <img src="https://assets.upstox.com/content/assets/images/cms/2024314/coforge.webp" alt="Logo" />
+    </a>
+    <nav class="nav-links">
+      <a href="/tickets">Tickets</a>
+      <a href="/ticket/details">Actions</a>
+      <a href="/ticket/status">Status</a>
+      <a href="/ticket/comment">Comments</a>
+    </nav>
+  </div>
+</div>
 
-      <div class="nav-card">
-        <a href="/tickets">📋 View All Tickets</a>
-      </div>
+<div class="main-content">
+  <div class="home-content">
+    <h1>Welcome to the Department Dashboard</h1>
+    <p>Manage your tickets easily and efficiently.</p>
+  </div>
 
-      <div class="nav-card">
-        <a href="/ticket/details">📝 Ticket Details</a>
-      </div>
+  <div class="input-section">
+    <label for="deptId">Department ID:</label>
+    <input type="number" [(ngModel)]="departmentId" id="deptId" />
+    <button (click)="fetchTickets()">Load Stats</button>
+  </div>
 
-      <div class="nav-card">
-        <a href="/ticket/status">🔄 Update Ticket Status</a>
-      </div>
+  <p class="loading" *ngIf="loading">Loading...</p>
+  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
 
-      <div class="nav-card">
-        <a href="/ticket/comment">💬 Add Ticket Comment</a>
-      </div>
+  <div class="stats-container" *ngIf="!loading && totalTickets > 0">
+    <div class="stat-card">
+      <h3>{{ totalTickets }}</h3>
+      <p>Total Tickets</p>
     </div>
-
-    <div class="dashboard-right">
-      <img
-        src="https://static.vecteezy.com/system/resources/thumbnails/042/567/596/small_2x/double-workplace-at-home-line-cartoon-animation-comfortable-domestic-office-furniture-4k-motion-graphic-desk-with-two-computers-2d-linear-animated-objects-on-interior-background-video.jpg"
-        alt="Illustration"
-      />
+    <div class="stat-card">
+      <h3>{{ openTickets }}</h3>
+      <p>Open Tickets</p>
+    </div>
+    <div class="stat-card">
+      <h3>{{ closedTickets }}</h3>
+      <p>Closed Tickets</p>
     </div>
   </div>
 </div>
+
+<footer>
+  <p>© 2025 Department Ticketing System | Version 1

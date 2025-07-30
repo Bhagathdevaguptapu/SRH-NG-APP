@@ -131,3 +131,26 @@ button:disabled {
   height: 100%;
   object-fit: cover;
 }
+footer {
+  padding: 15px 20px;
+  text-align: center;
+  color: #1a1515;
+  font-size: 0.9rem;
+  background: #cac7c7;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.top-right-logo {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 180px;   /* Adjust size as needed */
+  height: auto;
+  z-index: 1000;
+  cursor: pointer; /* Optional: makes it look clickable */
+}
