@@ -56,6 +56,7 @@ export class Home {
     });
   }
 
+  
   resetCounts(): void {
     this.tickets = [];
     this.totalTickets = 0;

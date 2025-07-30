@@ -1,0 +1,36 @@
+<div class="header-container">
+  <div class="logo-left">
+    <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo" />
+  </div>
+  <h1>Service Request Handling</h1>
+</div>
+<div class="login-container">
+  <h2>🔐 Login</h2>
+
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <label>Email:</label>
+    <input type="email" name="email" [(ngModel)]="loginData.email" required />
+
+    <label>Password:</label>
+    <input type="password" name="password" [(ngModel)]="loginData.password" required />
+
+    <label>Role:</label>
+    <select name="role" [(ngModel)]="loginData.role" required>
+      <option value="" disabled>Select Role</option>
+      <option value="admin">Admin</option>
+      <option value="employee">Employee</option>
+      <option value="department">Department</option>
+    </select>
+
+    <div class="actions">
+      <button type="submit" [disabled]="!loginForm.form.valid">Submit</button>
+      <button type="button" (click)="resetForm()">Reset</button>
+    </div>
+  </form>
+
+  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+</div>
+
+<footer>
+  <p>&copy; 2025 Service Request Handling. All rights reserved.</p>
+</footer>

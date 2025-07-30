@@ -141,7 +141,10 @@ button:hover {
   background-color: #fff3cd;
   color: #ff9800;
 }
-
+.status.raised {
+  background-color: #fff3cd;
+  color: #ff9800;
+}
 .status.in_progress {
   background-color: #fff3cd;
   color: #ff7300;

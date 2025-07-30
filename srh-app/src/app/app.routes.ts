@@ -4,9 +4,13 @@ import { TicketDetail } from './department/components/ticket-detail/ticket-detai
 import { TicketList } from './department/components/ticket-list/ticket-list';
 import { TicketStatusUpdate } from './department/components/ticket-status-update/ticket-status-update';
 import { Home } from './department/components/home/home';
+import { Login } from './login/login/login';
 
 export const routes: Routes = [ {
     path: '',
+    component: Login
+},{
+    path: 'home',
     component: Home
 },{ 
     path: 'tickets', 
