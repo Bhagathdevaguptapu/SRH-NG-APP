@@ -5,21 +5,18 @@
   </div>
 </div>
 <div class="assign-ticket-container">
-  <h2>🎯 Assign Ticket to Department</h2>
+  <h2>🎯 Assign Ticket</h2>
 
-  <div class="form-group">
-    <label>Ticket ID:</label>
-    <input type="number" [(ngModel)]="ticketId" />
-  </div>
+<p><strong>Ticket ID:</strong> {{ ticketId }}</p>
 
-  <div class="form-group">
-    <label>Department ID:</label>
-    <input type="number" [(ngModel)]="departmentId" />
-  </div>
+<div class="form-group">
+  <label>Department ID:</label>
+  <input type="number" [(ngModel)]="departmentId" />
+</div>
 
-  <button (click)="assign()">Assign</button>
+<button (click)="assign()">Assign</button>
 
-  <p class="loading" *ngIf="loading">Processing...</p>
-  <p class="error" *ngIf="isError">{{ message }}</p>
-  <p class="success" *ngIf="!isError && message">{{ message }}</p>
+<p class="loading" *ngIf="loading">Processing...</p>
+<p class="error" *ngIf="isError">{{ message }}</p>
+<p class="success" *ngIf="!isError && message">{{ message }}</p>
 </div>

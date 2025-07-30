@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../services/admin-service';
 import { CancelTicketRequest } from '../../models/admin.model';
@@ -11,29 +11,29 @@ import { CancelTicketRequest } from '../../models/admin.model';
   styleUrl: './cancel-ticket.css'
 })
 export class CancelTicket {
-   ticketId: number | null = null;
-  cancelReason: string = '';
+   @Input() ticketId: number | null | undefined  = null;
+  cancelReason = '';
 
-  message: string = '';
-  isError: boolean = false;
-  loading: boolean = false;
+  message = '';
+  isError = false;
+  loading = false;
 
   constructor(private adminService: AdminService) {}
 
   cancel() {
     if (!this.ticketId || !this.cancelReason.trim()) {
       this.isError = true;
-      this.message = 'Both Ticket ID and Cancel Reason are required.';
+      this.message = 'Cancel reason is required.';
       return;
     }
 
     this.loading = true;
-    this.isError = false;
     this.message = '';
+    this.isError = false;
 
     const request: CancelTicketRequest = {
       ticketId: this.ticketId,
-      cancelReason: this.cancelReason
+      cancelReason: this.cancelReason,
     };
 
     this.adminService.cancelTicket(request).subscribe({
@@ -47,7 +47,7 @@ export class CancelTicket {
         this.message = 'Server error occurred';
         this.isError = true;
         console.error(err);
-      }
+      },
     });
   }
 
