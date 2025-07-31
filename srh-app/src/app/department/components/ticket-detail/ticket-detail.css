@@ -1,6 +1,6 @@
 .ticket-detail-container {
   max-width: 900px;
-  margin: 30px auto;
+  margin: 80px auto 40px auto; /* moved down */
   padding: 30px 40px;
   border-radius: 12px;
   background: #fff;
@@ -137,26 +137,28 @@ button:hover {
 }
 
 /* Status colors */
-.status.assigned {
-  background-color: #fff3cd;
-  color: #ff9800;
-}
-.status.raised {
-  background-color: #fff3cd;
-  color: #ff9800;
-}
-.status.in_progress {
-  background-color: #fff3cd;
-  color: #ff7300;
-}
-.status.started {
+.status.assigned,
+.status.closed,
+.status.open {
   background-color: #d4edda;
   color: #388e3c;
 }
 
-.status.closed {
-  background-color: #f8d7da;
+.status.raised
+.status.issue_resolved {
+  background-color: #d4edda;
+  color: #8b7434;
+}
+
+.status.started,
+.status.cancelled{
+  background-color: #ffebeb;
   color: #d32f2f;
+}
+
+.status.in_progress {
+  background-color: #fff3cd;
+  color: #ff9800;
 }
 
 /* Actions container */
@@ -244,4 +246,99 @@ footer {
   height: auto;
   z-index: 1000;
   cursor: pointer; /* Optional: makes it look clickable */
+}
+
+
+/* Responsive for tablets and smaller screens */
+@media (max-width: 768px) {
+  .ticket-detail-container {
+    padding: 20px 15px;
+    margin: 20px 15px;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  label {
+    text-align: left;
+    min-width: auto;
+    font-size: 0.95rem;
+  }
+
+  input[type='number'] {
+    width: 90%;
+    max-width: none;
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .tickets-list {
+    gap: 15px;
+  }
+
+  .ticket-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .ticket-info {
+    max-width: 100%;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .ticket-actions {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .accept-btn, .close-btn {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 0.95rem;
+  }
+
+  .back-arrow {
+    top: 15px;
+    left: 15px;
+    font-size: 1.1rem;
+    padding: 6px 12px;
+  }
+
+  .top-right-logo {
+    width: 120px;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* Responsive for very small phones */
+@media (max-width: 400px) {
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .ticket-info {
+    font-size: 0.85rem;
+  }
+
+  .accept-btn, .close-btn {
+    font-size: 0.9rem;
+  }
 }

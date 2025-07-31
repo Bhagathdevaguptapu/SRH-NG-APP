@@ -4,7 +4,7 @@
 
 .ticket-container {
   max-width: 900px;
-  margin: 40px auto;
+  margin: 80px auto 40px auto; /* moved down */
   padding: 25px 30px;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -137,18 +137,19 @@
   color: #388e3c;
 }
 
-
+.status.raised
 .status.issue_resolved {
   background-color: #d4edda;
   color: #8b7434;
 }
 
-.status.in_progress {
+.status.started,
+.status.cancelled{
   background-color: #ffebeb;
   color: #d32f2f;
 }
 
-.status.pending {
+.status.in_progress {
   background-color: #fff3cd;
   color: #ff9800;
 }

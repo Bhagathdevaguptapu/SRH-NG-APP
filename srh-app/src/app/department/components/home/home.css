@@ -16,7 +16,9 @@ body {
 }
 
 .main-content {
-  flex: 1 0 auto; /* grow and shrink as needed */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -35,12 +37,13 @@ body {
 }
 
 .nav-logo img {
-  height: 70px; /* Adjust as needed */
+  height: 70px;
   width: auto;
   display: block;
 }
 
 .nav-links a {
+  position: relative;
   color: var(--light);
   text-decoration: none;
   margin-left: 20px;
@@ -48,15 +51,24 @@ body {
   transition: color 0.3s ease;
 }
 
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #24bed3;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
 .nav-links a:hover {
   color: #24bed3;
 }
 
-/* The important fix: let main-content grow to fill space */
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.nav-links a:hover::after {
+  transform: scaleX(1);
 }
 
 .home-content {
@@ -91,12 +103,31 @@ body {
 }
 
 .stat-card {
+  position: relative;
   background: white;
   padding: 25px 35px;
   border-radius: 15px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
   text-align: center;
   width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(45deg, #ff6f61, #24bed3);
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.4);
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
 }
 
 .stat-card h3 {
@@ -143,6 +174,7 @@ body {
 
 .input-section input[type='number']:focus {
   border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.4);
 }
 
 .input-section button {
@@ -155,6 +187,31 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-section button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.toast {
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  background: #24bed3;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  font-weight: 600;
+  animation: fadeOut 5s ease forwards;
+  z-index: 999;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 footer {
@@ -170,6 +227,3 @@ footer {
   left: 0;
   z-index: 100;
 }
-
-
-
