@@ -1,0 +1,32 @@
+<div class="employee-ticket-container">
+  <h2>📝 Ticket Feedbacks</h2>
+  <button (click)="fetchAllFeedbacks()">Load Feedbacks</button>
+
+  <p class="error" *ngIf="isError">{{ errorMsg }}</p>
+  <p class="loading" *ngIf="loading">Loading feedbacks...</p>
+
+  <div *ngIf="!loading && !isError && feedbacks.length === 0">
+    <p>No feedbacks available.</p>
+  </div>
+
+  <table *ngIf="feedbacks.length > 0" class="ticket-table">
+    <thead>
+      <tr>
+        <th>Feedback ID</th>
+        <th>Ticket ID</th>
+        <th>Employee ID</th>
+        <th>Feedback Text</th>
+        <th>Given At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fb of feedbacks">
+        <td>{{ fb.feedbackId }}</td>
+        <td>{{ fb.ticketId }}</td>
+        <td>{{ fb.employeeId }}</td>
+        <td>{{ fb.feedbackText }}</td>
+        <td>{{ fb.givenAt | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -25,5 +25,10 @@ export class AdminService {
     return this.httpClient.post<any>(`${this.baseUrl}/ticket/cancel`, request);
   }
 
+  getAllFeedbacks() {
+  return this.httpClient.get<any>(`${this.baseUrl}/feedbacks`);
+}
+
+
  
 }

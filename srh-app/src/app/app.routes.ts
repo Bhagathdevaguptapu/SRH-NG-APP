@@ -5,6 +5,7 @@ import { AssignTicket } from './admin/components/assign-ticket/assign-ticket';
 import { CancelTicket } from './admin/components/cancel-ticket/cancel-ticket';
 import { EmployeeTicketList } from './admin/components/employee-ticket-list/employee-ticket-list';
 import { Login } from './login/login/login';
+import { AllFeedbacksComponent } from './admin/components/all-feedbacks/all-feedbacks';
 
 export const routes: Routes = [{
     path: 'admin-home',
@@ -24,4 +25,7 @@ export const routes: Routes = [{
 }, {
     path: 'employee-ticket-list',
     component: EmployeeTicketList
+},{
+    path: 'all-feedbacks',
+    component: AllFeedbacksComponent
 }];

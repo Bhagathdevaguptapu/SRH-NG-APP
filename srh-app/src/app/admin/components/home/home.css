@@ -131,7 +131,6 @@ body {
   animation: blink 1.5s infinite;
 }
 
-
 .header-container {
   display: flex;
   align-items: center;
@@ -171,6 +170,7 @@ body {
   color: #4b5563;
   transform: scale(1.05);
 }
+
 @media (max-width: 600px) {
   .header-container {
     flex-direction: column;
@@ -206,7 +206,36 @@ body {
   background-color: #c0392b;
 }
 
+/* Additional responsiveness for tablets and very small screens */
+/* Tablet and medium screens */
+@media (max-width: 900px) {
+  .workflow-container {
+    padding: 40px 30px;
+    max-width: 700px;
+  }
 
+  .workflow-card {
+    width: 45%;
+    padding: 20px 15px;
+  }
 
+  .workflow-container h1 {
+    font-size: 2.5rem;
+  }
+}
 
+/* Mobile very small screens */
+@media (max-width: 400px) {
+  .workflow-container {
+    padding: 30px 15px;
+  }
 
+  .workflow-card {
+    width: 100%;
+    padding: 15px 12px;
+  }
+
+  .workflow-container h1 {
+    font-size: 1.8rem;
+  }
+}

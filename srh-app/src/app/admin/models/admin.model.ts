@@ -37,8 +37,16 @@ export interface AssignTicketRequest {
   departmentId: number;
 }
 
+
 export interface CancelTicketRequest {
   ticketId: number;
   cancelReason: string;
+}
+export interface TicketFeedbackDTO {
+  feedbackId: number;
+  ticketId: number;
+  employeeId: number;
+  feedbackText: string;
+  givenAt: string;
 }
 

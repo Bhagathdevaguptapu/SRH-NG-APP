@@ -1,0 +1,126 @@
+/* Base styles */
+body,
+.employee-ticket-container,
+.employee-ticket-container h2,
+.ticket-table,
+.ticket-table th,
+.ticket-table td,
+button,
+.loading,
+.error {
+  font-family: 'Comic Sans MS', cursive, sans-serif !important;
+  color: #2c3e50;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container */
+.employee-ticket-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* Heading */
+.employee-ticket-container h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: bold;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Load button */
+.employee-ticket-container button {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.employee-ticket-container button:hover {
+  background-color: #21618c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
+}
+
+/* Loading and error states */
+.loading,
+.error {
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.loading {
+  color: #3498db;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+/* Feedback table */
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ticket-table thead {
+  background-color: #3498db;
+  color: white;
+  text-align: left;
+}
+
+.ticket-table th,
+.ticket-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e6ecf1;
+  vertical-align: top;
+}
+
+.ticket-table tbody tr:hover {
+  background-color: #ecf5fd;
+  transition: background-color 0.2s ease;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .employee-ticket-container {
+    padding: 20px 10px;
+  }
+
+  .employee-ticket-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .ticket-table th,
+  .ticket-table td {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .employee-ticket-container button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
