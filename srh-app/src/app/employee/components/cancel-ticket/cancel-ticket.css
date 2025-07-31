@@ -1,34 +1,44 @@
 .card-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  padding: 60px 20px;
+  background: transparent;
 }
 
+/* Glass-styled card */
 .card {
-  background-color: #f9fbfc;
-  width: 400px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 0.4s ease-out;
 }
 
+/* Header */
 .card-header {
-  background-color: #e3f2fd;
-  padding: 20px;
-  border-bottom: 1px solid #d0e3f0;
+  background: linear-gradient(to right, #e3f2fd, #bbdefb);
+  padding: 22px;
   text-align: center;
+  border-bottom: 1px solid #c5dff6;
 }
 
 .card-header h3 {
   margin: 0;
-  color: #333;
+  font-size: 24px;
+  color: #1a1a1a;
+  font-weight: 600;
 }
 
+/* Body */
 .card-body {
-  padding: 20px;
+  padding: 24px;
 }
 
+/* Form groups */
 .form-group {
   margin-bottom: 20px;
 }
@@ -36,46 +46,56 @@
 label {
   display: block;
   margin-bottom: 6px;
-  color: #555;
-  font-weight: 500;
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
 }
 
 input.form-control {
   width: 100%;
-  padding: 10px;
+  padding: 12px 14px;
   border: 1px solid #cbd5e0;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #ffffff;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 input.form-control:focus {
   outline: none;
-  border-color: #90caf9;
-  box-shadow: 0 0 0 2px #e3f2fd;
+  border-color: #42a5f5;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.25);
 }
 
+/* Cancel Button */
 .btn-cancel {
   width: 100%;
-  padding: 12px;
-  background-color: #64b5f6;
+  padding: 14px;
+  background-color: #2196f3;
   color: white;
-  border: none;
-  border-radius: 8px;
   font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 15px;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-cancel:hover {
-  background-color: #1e88e5;
-  transform: scale(1.02);
+  background-color: #1976d2;
+  transform: scale(1.03);
 }
 
+.btn-cancel:active {
+  transform: scale(0.98);
+}
+
+/* Status Message Styles */
 .status-message {
   margin-top: 20px;
   text-align: center;
+  font-size: 15px;
 }
 
 .loading {
@@ -83,11 +103,23 @@ input.form-control:focus {
 }
 
 .success {
-  color: #388e3c;
+  color: #2e7d32;
   font-weight: 600;
 }
 
 .error {
-  color: #d32f2f;
+  color: #c62828;
   font-weight: 600;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

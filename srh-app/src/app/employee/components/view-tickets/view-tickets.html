@@ -1,5 +1,5 @@
 <div class="view-container">
-  <h2>View My Tickets</h2>
+  <h2>My Tickets</h2>
 
   <div class="search-bar">
     <input
@@ -8,17 +8,17 @@
       placeholder="Enter Employee ID"
       class="input-id"
     />
-    <button class="get-btn" (click)="viewTickets()">GET</button>
+    <button class="get-btn" (click)="viewTickets()">Get Tickets</button>
   </div>
 
   <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
-  <p class="loading" *ngIf="loading">Loading tickets...</p>
+  <p class="loading" *ngIf="loading">Fetching your tickets...</p>
 
   <div *ngFor="let ticket of tickets" class="ticket-card">
     <div class="ticket-header">
       <div class="ticket-title">{{ ticket.title }}</div>
       <button class="view-btn" (click)="toggleDetails(ticket)">
-        {{ ticket.expanded ? 'Hide' : 'View Details' }}
+        {{ ticket.expanded ? '▲ Hide' : '▼ View Details' }}
       </button>
     </div>
 
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-   <div class="back-button-container">
+  <div class="back-button-container">
     <button class="back-btn" (click)="goBack()">Back</button>
   </div>
 </div>

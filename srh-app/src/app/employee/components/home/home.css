@@ -9,7 +9,7 @@ body {
   flex-direction: column;
 }
 
-/* Main container stretches to available height */
+/* Main container */
 .dashboard-wrapper {
   flex: 1;
   display: flex;
@@ -26,12 +26,28 @@ body {
   padding: 80px 60px;
   max-width: 1100px;
   width: 100%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(14px);
   text-align: center;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out both;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1),
+              0 20px 50px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(14px);
 }
 
-/* Header text */
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
 .dashboard-header h1 {
   font-size: 48px;
   color: #1a1a1a;
@@ -40,11 +56,12 @@ body {
 
 .subtitle {
   font-size: 20px;
-  color: #555;
+  color: #444;
+  font-weight: 500;
   margin-bottom: 50px;
 }
 
-/* Card grid layout */
+/* Card grid */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -57,50 +74,85 @@ body {
   border-radius: 18px;
   padding: 40px 25px;
   box-shadow: 0 14px 28px rgba(0, 123, 255, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease-in-out;
   cursor: pointer;
   border: 2px solid transparent;
 }
 
 .action-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.3), 0 0 8px rgba(0, 123, 255, 0.2);
   border-color: #007bff;
+}
+
+.action-card:active {
+  transform: scale(0.97);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
 }
 
 .action-card a {
   text-decoration: none;
-  color: #007bff;
+  color: #0056b3;
   font-size: 22px;
   font-weight: 600;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: color 0.3s ease;
+}
+
+.action-card:hover a {
+  color: #007bff;
 }
 
 .action-card .emoji {
-  font-size: 44px;
-  margin-bottom: 12px;
+  font-size: 48px;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
 }
 
-/* Optional background hover tints */
+.action-card:hover .emoji {
+  transform: scale(1.1);
+}
+
+/* Hover tints */
 .raise:hover { background: #e3f2fd; }
 .view:hover { background: #fff3e0; }
 .cancel:hover { background: #fdecea; }
 .feedback:hover { background: #f3e5f5; }
 
+/* Logout button */
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  padding: 10px 18px;
+  font-size: 14px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 77, 79, 0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
 /* Footer */
 .dashboard-footer {
   text-align: center;
   padding: 24px 16px;
-  background-color: #f2f8fc;
-  color: #555;
-  font-size: 14px;
-  border-top: 1px solid #ddd;
+  background-color: #e8f0fe;
+  color: #444;
+  font-size: 13px;
   margin-top: auto;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 600px) {
   .dashboard-header h1 {
     font-size: 32px;
@@ -121,26 +173,11 @@ body {
   .action-card .emoji {
     font-size: 36px;
   }
-}
-.logout-btn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  padding: 10px 18px;
-  font-size: 14px;
-  background-color: #ff4d4f;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(255, 77, 79, 0.3);
-  transition: background 0.3s ease;
-}
 
-.logout-btn:hover {
-  background-color: #e60000;
-}
-
-.glass-card {
-  position: relative; /* Ensure logout button is positioned inside card */
+  .logout-btn {
+    top: 12px;
+    right: 12px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
 }

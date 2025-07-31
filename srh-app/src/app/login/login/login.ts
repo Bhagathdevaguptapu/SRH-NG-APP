@@ -31,6 +31,7 @@ export class Login {
           if (this.loginData.role === 'admin') {
             this.router.navigate(['admin-home']);
           } else if (this.loginData.role === 'employee') {
+            
             this.router.navigate(['home']);
           } else if (this.loginData.role === 'department') {
             this.router.navigate(['/department/dashboard']);

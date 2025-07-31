@@ -20,6 +20,7 @@ export class LoginService {
         break;
       case 'employee':
         url = `${this.baseUrl}/employee/login`;
+        
         break;
       case 'department':
         url = `${this.baseUrl}/department/login`; 
