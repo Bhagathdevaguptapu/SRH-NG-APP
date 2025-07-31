@@ -1,43 +1,53 @@
+/* Layout wrapper to support sticky footer */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Centering card container */
 .card-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 60px 20px;
-  background: transparent;
-}
-
-/* Glass-styled card */
-.card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
-  width: 100%;
-  max-width: 460px;
-  border-radius: 16px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  background: none;
+  flex: 1; /* Ensures footer sticks to bottom if content is short */
   font-family: 'Segoe UI', sans-serif;
-  animation: fadeIn 0.4s ease-out;
+  position: relative;
 }
 
-/* Header */
+/* Feedback card styling */
+.card {
+  background: linear-gradient(145deg, #e1f5fe, #ffffff);
+  border-radius: 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  max-width: 520px;
+  width: 100%;
+  animation: fadeIn 0.4s ease-out;
+  padding-bottom: 25px;
+}
+
 .card-header {
   background: linear-gradient(to right, #e3f2fd, #bbdefb);
   padding: 22px;
   text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   border-bottom: 1px solid #c5dff6;
 }
 
 .card-header h3 {
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
   color: #1a1a1a;
   font-weight: 600;
 }
 
-/* Body */
 .card-body {
   padding: 24px;
 }
 
-/* Form groups */
 .form-group {
   margin-bottom: 18px;
 }
@@ -52,7 +62,7 @@ label {
 
 input.form-control,
 textarea.form-control {
-  width: 100%;
+  width: 90%;
   padding: 12px 14px;
   border: 1px solid #cbd5e0;
   border-radius: 10px;
@@ -70,30 +80,40 @@ textarea.form-control:focus {
   box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.25);
 }
 
-/* Submit Button */
-.btn-submit {
-  width: 100%;
-  padding: 14px;
+/* Buttons side by side */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn-submit,
+.back-btn {
+  flex: 1;
+  padding: 12px;
   background-color: #2196f3;
   color: white;
   font-weight: 600;
   border: none;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-submit:hover {
+.btn-submit:hover,
+.back-btn:hover {
   background-color: #1976d2;
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
-.btn-submit:active {
-  transform: scale(0.98);
+.btn-submit:active,
+.back-btn:active {
+  transform: scale(0.97);
 }
 
-/* Status Messages */
+/* Status messages */
 .status-message {
   margin-top: 20px;
   text-align: center;
@@ -112,6 +132,28 @@ textarea.form-control:focus {
 .error {
   color: #c62828;
   font-weight: 600;
+}
+
+/* Logo */
+.logo-top-right {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.logo-top-right img {
+  height: 55px;
+}
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 20px 16px;
+  background-color: #e8f0fe;
+  color: #444;
+  font-size: 14px;
+  border-top: 1px solid #cfd8dc;
 }
 
 /* Animation */

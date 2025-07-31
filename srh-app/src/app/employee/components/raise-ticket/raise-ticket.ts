@@ -62,4 +62,8 @@ export class RaiseTicket {
       }
     });
   }
+
+  goToHome() {
+    this.router.navigate(['home']);
+  }
 }

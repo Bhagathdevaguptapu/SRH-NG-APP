@@ -1,30 +1,36 @@
-<div class="card-container">
-  <div class="card">
-    <div class="card-header">
-      <h3>Cancel a Ticket</h3>
-    </div>
+<div class="logo-top-right">
+  <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo">
+</div>
 
-    <div class="card-body">
-      <div class="form-group">
-        <label for="ticketId">Ticket ID:</label>
-        <input
-          type="number"
-          id="ticketId"
-          class="form-control"
-          [(ngModel)]="ticketId"
-          placeholder="Enter Ticket ID"
-        />
-      </div>
+<div class="page-wrapper">
+  <div class="cancel-container">
+    <h2>Cancel a Ticket</h2>
 
-      <button class="btn-cancel" (click)="cancelTicket()" [disabled]="loading">
+    <label for="ticketId">Ticket ID:</label>
+    <input
+      type="number"
+      id="ticketId"
+      class="form-control"
+      [(ngModel)]="ticketId"
+      placeholder="Enter Ticket ID"
+    />
+
+    <div class="btn-group">
+      <button class="btn-primary cancel-btn" (click)="cancelTicket()" [disabled]="loading">
         {{ loading ? 'Cancelling...' : 'Cancel Ticket' }}
       </button>
 
-      <div class="status-message">
-        <p *ngIf="loading" class="loading">Cancelling ticket...</p>
-        <p *ngIf="message" class="success">{{ message }}</p>
-        <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
-      </div>
+      <button type="button" class="btn-primary home-btn" (click)="goToHome()">Back to Home</button>
+    </div>
+
+    <div class="status-message">
+      <p *ngIf="loading" class="loading">Cancelling ticket...</p>
+      <p *ngIf="message" class="success">{{ message }}</p>
+      <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
     </div>
   </div>
+
+  <footer class="page-footer">
+    &copy; 2025 Ticketing System — All rights reserved.
+  </footer>
 </div>

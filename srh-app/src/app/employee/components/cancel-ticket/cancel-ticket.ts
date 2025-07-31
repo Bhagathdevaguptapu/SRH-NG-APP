@@ -54,4 +54,7 @@ export class CancelTicket {
       }
     });
   }
+   goToHome() {
+    this.router.navigate(['home']);
+  }
 }

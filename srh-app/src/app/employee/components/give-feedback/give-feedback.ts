@@ -52,4 +52,7 @@ export class GiveFeedback {
       }
     });
   }
+   goToHome() {
+    this.router.navigate(['home']);
+  }
 }

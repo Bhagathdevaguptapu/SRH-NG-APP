@@ -1,28 +1,64 @@
-<div class="raise-ticket-container">
-  <h2>🎫 Raise a Ticket</h2>
-  <p class="subtitle">Submit your issue and we'll get back to you as soon as possible.</p>
+<div class="page-wrapper">
 
-  <form class="ticket-form" (ngSubmit)="raiseTicket()">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" id="title" [(ngModel)]="ticket.title" name="title" placeholder="e.g., Login not working" required />
-    </div>
+  <div class="logo-top-right">
+    <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo" />
+  </div>
 
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" rows="4" [(ngModel)]="ticket.description" name="description" placeholder="Provide a detailed description..." required></textarea>
-    </div>
+  <div class="raise-ticket-container">
+    <h2>🎫 Raise a Ticket</h2>
+    <p class="subtitle">Submit your issue and our team will respond shortly.</p>
 
-    <div class="form-group">
-      <label for="employeeId">Employee ID</label>
-      <input type="number" id="employeeId" [(ngModel)]="ticket.employeeId" name="employeeId" placeholder="e.g., 1234" required />
-    </div>
+    <form class="ticket-form" (ngSubmit)="raiseTicket()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          [(ngModel)]="ticket.title"
+          name="title"
+          placeholder="e.g., Login not working"
+          required
+        />
+      </div>
 
-    <button type="submit" class="submit-btn" [disabled]="loading">
-      {{ loading ? 'Submitting...' : '🚀 Submit Ticket' }}
-    </button>
-  </form>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          rows="4"
+          [(ngModel)]="ticket.description"
+          name="description"
+          placeholder="Provide a detailed description..."
+          required
+        ></textarea>
+      </div>
 
-  <p class="success-msg" *ngIf="message">{{ message }}</p>
-  <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+      <div class="form-group">
+        <label for="employeeId">Employee ID</label>
+        <input
+          id="employeeId"
+          type="number"
+          [(ngModel)]="ticket.employeeId"
+          name="employeeId"
+          placeholder="e.g., 1234"
+          required
+        />
+      </div>
+
+      <div class="button-row">
+        <button type="submit" class="submit-btn" [disabled]="loading">
+          {{ loading ? 'Submitting...' : '🚀 Submit Ticket' }}
+        </button>
+        <button type="button" class="back-btn" (click)="goToHome()">🏠 Back to Home</button>
+      </div>
+    </form>
+
+    <p class="success-msg" *ngIf="message">{{ message }}</p>
+    <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+  </div>
 </div>
+
+<!-- Footer outside wrapper -->
+<footer class="dashboard-footer">
+  <p>&copy; 2025 Ticketing System — All rights reserved.</p>
+</footer>

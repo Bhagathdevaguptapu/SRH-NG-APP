@@ -1,36 +1,53 @@
-<div class="view-container">
-  <h2>My Tickets</h2>
-
-  <div class="search-bar">
-    <input
-      type="number"
-      [(ngModel)]="employeeId"
-      placeholder="Enter Employee ID"
-      class="input-id"
-    />
-    <button class="get-btn" (click)="viewTickets()">Get Tickets</button>
+<div class="app-wrapper">
+  <!-- Logo on Top Right -->
+  <div class="logo-top-right">
+    <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo" />
   </div>
 
-  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
-  <p class="loading" *ngIf="loading">Fetching your tickets...</p>
+  <!-- Main Ticket View Container -->
+  <div class="view-container">
+    <h2>My Tickets</h2>
 
-  <div *ngFor="let ticket of tickets" class="ticket-card">
-    <div class="ticket-header">
-      <div class="ticket-title">{{ ticket.title }}</div>
-      <button class="view-btn" (click)="toggleDetails(ticket)">
-        {{ ticket.expanded ? '▲ Hide' : '▼ View Details' }}
-      </button>
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input
+        type="number"
+        [(ngModel)]="employeeId"
+        placeholder="Enter Employee ID"
+        class="input-id"
+      />
+      <button class="get-btn" (click)="viewTickets()">Get Tickets</button>
     </div>
 
-    <div class="ticket-details" *ngIf="ticket.expanded">
-      <p><strong>Ticket ID:</strong> {{ ticket.ticketId }}</p>
-      <p><strong>Description:</strong> {{ ticket.description }}</p>
-      <p><strong>Status:</strong> {{ ticket.status }}</p>
-      <p><strong>Created At:</strong> {{ ticket.createdAt | date: 'short' }}</p>
+    <!-- Error or Loading States -->
+    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <p class="loading" *ngIf="loading">Fetching your tickets...</p>
+
+    <!-- Ticket List -->
+    <div *ngFor="let ticket of tickets" class="ticket-card">
+      <div class="ticket-header">
+        <div class="ticket-title">{{ ticket.title }}</div>
+        <button class="view-btn" (click)="toggleDetails(ticket)">
+          {{ ticket.expanded ? '▲ Hide' : '▼ View Details' }}
+        </button>
+      </div>
+
+      <div class="ticket-details" *ngIf="ticket.expanded">
+        <p><strong>Ticket ID:</strong> {{ ticket.ticketId }}</p>
+        <p><strong>Description:</strong> {{ ticket.description }}</p>
+        <p><strong>Status:</strong> {{ ticket.status }}</p>
+        <p><strong>Created At:</strong> {{ ticket.createdAt | date: 'short' }}</p>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+      <button class="back-btn" (click)="goBack()">Back</button>
     </div>
   </div>
 
-  <div class="back-button-container">
-    <button class="back-btn" (click)="goBack()">Back</button>
-  </div>
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>&copy; 2025 Ticketing System — All rights reserved.</p>
+  </footer>
 </div>

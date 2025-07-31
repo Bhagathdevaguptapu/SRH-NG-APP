@@ -1,13 +1,22 @@
+
+<!-- Logo at top right -->
+<div class="logo-top-right">
+  <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo">
+</div>
+
+
 <div class="dashboard-wrapper">
   <div class="glass-card">
     <!-- Logout button -->
     <button class="logout-btn" (click)="logout()">Logout</button>
 
+    <!-- Heading -->
     <div class="dashboard-header">
       <h1>Employee Dashboard</h1>
       <p class="subtitle">Take charge of your tickets — select an action below.</p>
     </div>
 
+    <!-- Action Cards -->
     <div class="card-grid">
       <div class="action-card raise">
         <a routerLink="/raise-ticket">
