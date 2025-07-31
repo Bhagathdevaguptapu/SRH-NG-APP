@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { EmployeeDTO } from '../../models/admin.model';
+import { EmployeeDTO, TicketSummary } from '../../models/admin.model';
 import { AdminService } from '../../services/admin-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AssignTicket } from "../assign-ticket/assign-ticket";
+import { CancelTicket } from "../cancel-ticket/cancel-ticket";
 
 @Component({
   selector: 'app-employee-ticket-list',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, AssignTicket, CancelTicket],
   templateUrl: './employee-ticket-list.html',
   styleUrl: './employee-ticket-list.css'
 })
@@ -17,7 +19,11 @@ export class EmployeeTicketList {
   isError = false;
   errorMsg = '';
 
-  constructor(private adminService: AdminService) {}
+  showAssignModal = false;
+  showCancelModal = false;
+  selectedTicket: TicketSummary | null = null;
+
+  constructor(private adminService: AdminService) { }
 
   fetchEmployeeTickets() {
     if (!this.employeeId) {
@@ -47,6 +53,32 @@ export class EmployeeTicketList {
         console.error(err);
       }
     });
+  }
+
+  openAssignPopup(ticket: TicketSummary) {
+    this.selectedTicket = ticket;
+    this.showAssignModal = true;
+  }
+
+  closeAssignPopup() {
+    this.showAssignModal = false;
+    this.selectedTicket = null;
+  }
+
+  openCancelPopup(ticket: TicketSummary) {
+    this.selectedTicket = ticket;
+    this.showCancelModal = true;
+  }
+
+  closeCancelPopup() {
+    this.showCancelModal = false;
+    this.selectedTicket = null;
+  }
+
+  onAssignmentDone() {
+    this.closeAssignPopup();            // Close modal
+    this.closeCancelPopup();          // Close cancel modal
+    this.fetchEmployeeTickets();        // Reload employee tickets
   }
 
 }

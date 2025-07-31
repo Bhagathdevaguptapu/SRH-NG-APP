@@ -45,8 +45,10 @@
             <td>{{ ticket.cancelReason || '—' }}</td>
             <td>{{ ticket.closeReason || '—' }}</td>
             <td>
-              <button  (click)="openAssignPopup(ticket)" style="background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Assign</button>
-              <button (click)="openCancelPopup(ticket)" style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Cancel</button>
+              <button (click)="openAssignPopup(ticket)"
+                style="background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Assign</button>
+              <button (click)="openCancelPopup(ticket)"
+                style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Cancel</button>
             </td>
           </tr>
         </tbody>
@@ -57,12 +59,11 @@
   </div>
 </div>
 
-<!-- ASSIGN POPUP -->
 <div class="modal" *ngIf="showAssignModal">
   <div class="modal-content">
     <span class="close" (click)="closeAssignPopup()">&times;</span>
-    <!-- Pass ticketId with fallback null to avoid TS error -->
-    <app-assign-ticket [ticketId]="selectedTicket?.ticketId ?? null"></app-assign-ticket>
+    <app-assign-ticket [ticketId]="selectedTicket?.ticketId ?? null" (assignmentCompleted)="onAssignmentDone()">
+    </app-assign-ticket>
   </div>
 </div>
 
@@ -70,6 +71,7 @@
 <div class="modal" *ngIf="showCancelModal">
   <div class="modal-content">
     <span class="close" (click)="closeCancelPopup()">&times;</span>
-    <app-cancel-ticket [ticketId]="selectedTicket?.ticketId ?? null"></app-cancel-ticket>
+    <app-cancel-ticket [ticketId]="selectedTicket?.ticketId ?? null" (assignmentCompleted)="onAssignmentDone()">
+    </app-cancel-ticket>
   </div>
 </div>

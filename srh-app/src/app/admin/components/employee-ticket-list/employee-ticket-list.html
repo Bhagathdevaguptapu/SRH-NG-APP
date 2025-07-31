@@ -1,8 +1,8 @@
-<br/>
+<br />
 <div class="header-container">
   <div class="logo-left">
     <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo" />
-</div>
+  </div>
 </div>
 <div class="employee-ticket-container">
   <h2>📋 Employee Tickets by ID</h2>
@@ -28,6 +28,7 @@
           <th>Updated At</th>
           <th>Cancel Reason</th>
           <th>Close Reason</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -44,10 +45,32 @@
           <td>{{ ticket.updatedAt | date: 'short' }}</td>
           <td>{{ ticket.cancelReason || '—' }}</td>
           <td>{{ ticket.closeReason || '—' }}</td>
+          <td>
+            <button (click)="openAssignPopup(ticket)"
+              style="background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Assign</button>
+            <button (click)="openCancelPopup(ticket)"
+              style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Cancel</button>
+          </td>
         </tr>
       </tbody>
     </table>
 
     <p *ngIf="!employee.tickets || employee.tickets.length === 0">No tickets assigned.</p>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showAssignModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeAssignPopup()">&times;</span>
+    <!-- Pass ticketId with fallback null to avoid TS error -->
+    <app-assign-ticket [ticketId]="selectedTicket?.ticketId ?? null" (assignmentCompleted)="onAssignmentDone()"></app-assign-ticket>
+  </div>
+</div>
+
+<!-- CANCEL POPUP -->
+<div class="modal" *ngIf="showCancelModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeCancelPopup()">&times;</span>
+    <app-cancel-ticket [ticketId]="selectedTicket?.ticketId ?? null" (assignmentCompleted)="onAssignmentDone()"></app-cancel-ticket>
   </div>
 </div>

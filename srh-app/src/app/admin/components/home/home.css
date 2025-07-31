@@ -183,5 +183,30 @@ body {
   }
 }
 
+.logout-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+
+
 
 

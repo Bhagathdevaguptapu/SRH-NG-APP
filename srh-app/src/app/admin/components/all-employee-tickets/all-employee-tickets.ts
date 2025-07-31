@@ -23,7 +23,7 @@ export class AllEmployeeTickets {
   showCancelModal = false;
   selectedTicket: TicketSummary | null = null;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService) { }
 
   fetchAllEmployeeTickets() {
     this.loading = true;
@@ -68,5 +68,11 @@ export class AllEmployeeTickets {
   closeCancelPopup() {
     this.showCancelModal = false;
     this.selectedTicket = null;
+  }
+
+  onAssignmentDone() {
+    this.closeAssignPopup();            // Close modal
+    this.closeCancelPopup();          // Close cancel modal
+    this.fetchAllEmployeeTickets();     // Reload employee tickets
   }
 }

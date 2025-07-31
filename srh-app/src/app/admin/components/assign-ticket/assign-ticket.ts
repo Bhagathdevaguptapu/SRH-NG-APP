@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../services/admin-service';
 import { AssignTicketRequest } from '../../models/admin.model';
@@ -13,6 +13,8 @@ import { AssignTicketRequest } from '../../models/admin.model';
 export class AssignTicket {
   @Input() ticketId: number | null | undefined = null;
   departmentId: number | null = null;
+  @Output() assignmentCompleted = new EventEmitter<void>();
+
 
   message = '';
   isError = false;
@@ -41,6 +43,9 @@ export class AssignTicket {
         this.loading = false;
         this.message = res.message;
         this.isError = res.status !== 'success';
+        if (res.status === 'success') {
+          this.assignmentCompleted.emit();
+        }
       },
       error: (err) => {
         this.loading = false;
