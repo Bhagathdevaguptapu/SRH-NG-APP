@@ -48,7 +48,6 @@ input:focus {
 }
 
 button {
-  width: 100%;
   padding: 12px;
   background: #1976d2;
   color: white;
@@ -65,6 +64,17 @@ button:hover {
   background: #145ca8;
   box-shadow: 0 6px 18px rgba(25, 118, 210, 0.4);
   transform: translateY(-2px);
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  width: 48%;
 }
 
 .loading,
@@ -102,8 +112,15 @@ button:hover {
     font-size: 1rem;
     padding: 10px;
   }
-}
 
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group button {
+    width: 100%;
+  }
+}
 
 .header-container {
   display: flex;
@@ -144,6 +161,7 @@ button:hover {
   color: #4b5563;
   transform: scale(1.05);
 }
+
 @media (max-width: 600px) {
   .header-container {
     flex-direction: column;
@@ -156,4 +174,27 @@ button:hover {
   }
 }
 
+.custom-select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #2c3e50;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #f0f8ff;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%232c3e50" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+  background-position-y: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.2s ease;
+}
 
+.custom-select:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
+  outline: none;
+  background-color: #ffffff;
+}

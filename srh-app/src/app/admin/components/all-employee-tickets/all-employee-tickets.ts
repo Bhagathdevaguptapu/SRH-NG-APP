@@ -5,6 +5,7 @@ import { EmployeeDTO, TicketSummary } from '../../models/admin.model';
 import { AdminService } from '../../services/admin-service';
 import { AssignTicket } from "../assign-ticket/assign-ticket";
 import { CancelTicket } from "../cancel-ticket/cancel-ticket";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-employee-tickets',
@@ -23,7 +24,7 @@ export class AllEmployeeTickets {
   showCancelModal = false;
   selectedTicket: TicketSummary | null = null;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private router: Router) { }
 
   fetchAllEmployeeTickets() {
     this.loading = true;
@@ -74,5 +75,9 @@ export class AllEmployeeTickets {
     this.closeAssignPopup();            // Close modal
     this.closeCancelPopup();          // Close cancel modal
     this.fetchAllEmployeeTickets();     // Reload employee tickets
+  }
+
+  goBack() {
+    this.router.navigate(['/admin-home']);  // or [''] if home is root
   }
 }

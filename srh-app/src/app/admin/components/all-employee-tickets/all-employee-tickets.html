@@ -1,12 +1,19 @@
+<!-- Header with logo and title -->
 <div class="header-container">
   <div class="logo-left">
     <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo" />
   </div>
+  <!-- <h1>Service Request Handling</h1> -->
 </div>
 
+<!-- Employee Tickets Overview -->
 <div class="employee-ticket-container">
   <h2>📋 Employee Tickets Overview</h2>
-  <button (click)="fetchAllEmployeeTickets()">Load Employee Tickets</button>
+  <div class="button-container">
+    <button (click)="fetchAllEmployeeTickets()">Load Employee Tickets</button>
+    <button (click)="goBack()" class="back-button">Back</button>
+  </div>
+
 
   <p class="error" *ngIf="isError">{{ errorMsg }}</p>
   <p class="loading" *ngIf="loading">Loading employee tickets...</p>
@@ -45,10 +52,20 @@
             <td>{{ ticket.cancelReason || '—' }}</td>
             <td>{{ ticket.closeReason || '—' }}</td>
             <td>
-              <button (click)="openAssignPopup(ticket)"
-                style="background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Assign</button>
-              <button (click)="openCancelPopup(ticket)"
-                style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Cancel</button>
+              <ng-container *ngIf="ticket.status !== 'Cancelled'; else cancelledTicket">
+                <button (click)="openAssignPopup(ticket)"
+                  style="background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+                  {{ ticket.assignedToDepartment ? 'Re-Assign' : 'Assign' }}
+                </button>
+                <br/><br/>
+                <button (click)="openCancelPopup(ticket)"
+                  style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+                  Cancel
+                </button>
+              </ng-container>
+              <ng-template #cancelledTicket>
+                <span style="color: gray;">No Actions (Cancelled)</span>
+              </ng-template>
             </td>
           </tr>
         </tbody>
@@ -59,6 +76,7 @@
   </div>
 </div>
 
+<!-- Assign Ticket Modal -->
 <div class="modal" *ngIf="showAssignModal">
   <div class="modal-content">
     <span class="close" (click)="closeAssignPopup()">&times;</span>
@@ -67,6 +85,7 @@
   </div>
 </div>
 
+<!-- Cancel Ticket Modal -->
 <div class="modal" *ngIf="showCancelModal">
   <div class="modal-content">
     <span class="close" (click)="closeCancelPopup()">&times;</span>
@@ -74,3 +93,8 @@
     </app-cancel-ticket>
   </div>
 </div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Service Request Handling. All rights reserved.</p>
+</footer>

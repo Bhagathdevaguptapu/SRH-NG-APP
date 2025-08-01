@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllFeedbacks } from './all-feedbacks';
+import { AllFeedbacksComponent } from './all-feedbacks';
 
 describe('AllFeedbacks', () => {
-  let component: AllFeedbacks;
-  let fixture: ComponentFixture<AllFeedbacks>;
+  let component: AllFeedbacksComponent;
+  let fixture: ComponentFixture<AllFeedbacksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AllFeedbacks]
+      imports: [AllFeedbacksComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AllFeedbacks);
+    fixture = TestBed.createComponent(AllFeedbacksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

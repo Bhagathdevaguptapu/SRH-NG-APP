@@ -1,4 +1,4 @@
-/* Global Font and Reset */
+/* Global font and reset */
 body,
 input,
 button,
@@ -12,7 +12,8 @@ button,
 .loading,
 .error,
 .header-container,
-.header-container h1 {
+.header-container h1,
+footer {
   font-family: 'Comic Sans MS', cursive, sans-serif !important;
   color: #2c3e50;
   margin: 0;
@@ -27,6 +28,7 @@ button,
   justify-content: center;
   position: relative;
   margin: 2rem auto;
+  padding: 0 10px;
 }
 
 .logo-left {
@@ -51,6 +53,7 @@ button,
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
   letter-spacing: 2px;
   transition: all 0.3s ease-in-out;
+  user-select: none;
 }
 
 .header-container h1:hover {
@@ -72,9 +75,10 @@ button,
 
 /* Main Container */
 .employee-ticket-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 40px auto;
   padding: 30px 20px;
+  padding-bottom: 80px; /* for footer space */
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
@@ -91,6 +95,23 @@ button,
   gap: 10px;
 }
 
+/* Button container for spacing */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* distribute buttons left and right */
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Group input + load button together */
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 /* Input Field */
 .employee-ticket-container input[type="number"] {
   width: 240px;
@@ -98,7 +119,6 @@ button,
   font-size: 1rem;
   border: 2px solid #ccc;
   border-radius: 8px;
-  margin-right: 12px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -108,8 +128,8 @@ button,
   outline: none;
 }
 
-/* Primary Button */
-.employee-ticket-container button {
+/* Load button */
+.load-button {
   background-color: #3498db;
   color: #ffffff;
   padding: 12px 24px;
@@ -118,15 +138,37 @@ button,
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-bottom: 20px;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+  min-width: 140px;
+  text-align: center;
 }
 
-.employee-ticket-container button:hover {
+.load-button:hover {
   background-color: #21618c;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
+}
+
+/* Back button specific styling */
+.back-button {
+  background-color: #8ebfe9;    /* lighter blue */
+  color: #1e2c43;               /* darker text */
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(142, 191, 233, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  min-width: 90px;
+}
+
+.back-button:hover {
+  background-color: #78a9e6;
+  box-shadow: 0 6px 12px rgba(120, 169, 230, 0.7);
 }
 
 /* Loading and Error */
@@ -135,6 +177,7 @@ button,
   font-weight: bold;
   margin-top: 15px;
   font-size: clamp(0.9rem, 1.5vw, 1rem);
+  user-select: none;
 }
 
 .loading {
@@ -198,6 +241,7 @@ button,
   padding: 12px 15px;
   border-bottom: 1px solid #e6ecf1;
   vertical-align: top;
+  word-break: break-word;
 }
 
 .ticket-table tbody tr:hover {
@@ -235,11 +279,23 @@ button,
 @media (max-width: 768px) {
   .employee-ticket-container {
     padding: 20px 10px;
+    padding-bottom: 80px;
   }
 
   .employee-ticket-container input[type="number"] {
     width: 100%;
     margin-bottom: 10px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .left-group {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .employee-ticket-container button {
@@ -292,4 +348,18 @@ button,
   cursor: pointer;
   font-size: 24px;
   font-weight: bold;
+  user-select: none;
+}
+
+/* Footer fixed at bottom */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;  /* reduced from 20px */
+  background-color: #3498db;
+  color: white;
+  font-family: 'Comic Sans MS', cursive;
 }

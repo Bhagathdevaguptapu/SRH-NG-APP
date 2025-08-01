@@ -1,26 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';  // <-- Import Router
 import { AdminService } from '../../services/admin-service';
 import { AssignTicketRequest } from '../../models/admin.model';
 
 @Component({
   selector: 'app-assign-ticket',
+  standalone: true,             // Add this if using standalone components (Angular 14+)
   imports: [FormsModule, CommonModule],
   templateUrl: './assign-ticket.html',
-  styleUrl: './assign-ticket.css'
+  styleUrls: ['./assign-ticket.css']  // <-- fix typo from 'styleUrl' to 'styleUrls'
 })
 export class AssignTicket {
   @Input() ticketId: number | null | undefined = null;
   departmentId: number | null = null;
   @Output() assignmentCompleted = new EventEmitter<void>();
 
-
   message = '';
   isError = false;
   loading = false;
 
-  constructor(private adminService: AdminService) { }
+  // Inject Router here
+  constructor(private adminService: AdminService, private router: Router) { }
 
   assign() {
     if (!this.ticketId || !this.departmentId) {
@@ -55,4 +57,6 @@ export class AssignTicket {
       },
     });
   }
+
+
 }

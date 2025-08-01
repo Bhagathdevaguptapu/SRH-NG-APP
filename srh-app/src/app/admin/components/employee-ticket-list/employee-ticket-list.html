@@ -7,8 +7,15 @@
 <div class="employee-ticket-container">
   <h2>📋 Employee Tickets by ID</h2>
 
-  <input type="number" [(ngModel)]="employeeId" placeholder="Enter Employee ID" />
-  <button (click)="fetchEmployeeTickets()">Load Tickets</button>
+  <div class="button-container">
+    <div class="left-group">
+      <input type="number" [(ngModel)]="employeeId" placeholder="Enter Employee ID" />
+      <button (click)="fetchEmployeeTickets()" class="load-button">Load Tickets</button>
+    </div>
+    <button (click)="goBack()" class="back-button">Back</button>
+  </div>
+
+
 
   <p class="error" *ngIf="isError">{{ errorMsg }}</p>
   <p class="loading" *ngIf="loading">Loading tickets...</p>
@@ -46,13 +53,23 @@
           <td>{{ ticket.cancelReason || '—' }}</td>
           <td>{{ ticket.closeReason || '—' }}</td>
           <td>
-            <button (click)="openAssignPopup(ticket)"
-              style="background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Assign</button>
-            <button (click)="openCancelPopup(ticket)"
-              style="background-color: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Cancel</button>
+            <ng-container *ngIf="ticket.status !== 'Cancelled'; else cancelledTicket">
+              <button (click)="openAssignPopup(ticket)" class="btn-assign">
+                {{ ticket.assignedToDepartment ? 'Re-Assign' : 'Assign' }}
+              </button>
+              <br /><br />
+              <button (click)="openCancelPopup(ticket)" class="btn-cancel">
+                Cancel
+              </button>
+            </ng-container>
+
+            <ng-template #cancelledTicket>
+              <span style="color: gray;">No Actions (Cancelled)</span>
+            </ng-template>
           </td>
         </tr>
       </tbody>
+
     </table>
 
     <p *ngIf="!employee.tickets || employee.tickets.length === 0">No tickets assigned.</p>
@@ -62,8 +79,8 @@
 <div class="modal" *ngIf="showAssignModal">
   <div class="modal-content">
     <span class="close" (click)="closeAssignPopup()">&times;</span>
-    <!-- Pass ticketId with fallback null to avoid TS error -->
-    <app-assign-ticket [ticketId]="selectedTicket?.ticketId ?? null" (assignmentCompleted)="onAssignmentDone()"></app-assign-ticket>
+    <app-assign-ticket [ticketId]="selectedTicket?.ticketId ?? null"
+      (assignmentCompleted)="onAssignmentDone()"></app-assign-ticket>
   </div>
 </div>
 
@@ -71,6 +88,11 @@
 <div class="modal" *ngIf="showCancelModal">
   <div class="modal-content">
     <span class="close" (click)="closeCancelPopup()">&times;</span>
-    <app-cancel-ticket [ticketId]="selectedTicket?.ticketId ?? null" (assignmentCompleted)="onAssignmentDone()"></app-cancel-ticket>
+    <app-cancel-ticket [ticketId]="selectedTicket?.ticketId ?? null"
+      (assignmentCompleted)="onAssignmentDone()"></app-cancel-ticket>
   </div>
 </div>
+
+<footer>
+  <p>&copy; 2025 Service Request Handling. All rights reserved.</p>
+</footer>

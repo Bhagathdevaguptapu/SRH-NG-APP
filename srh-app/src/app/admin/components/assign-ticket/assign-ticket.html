@@ -1,13 +1,5 @@
-<br />
-<div class="header-container">
-  <div class="logo-left">
-    <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo" />
-  </div>
-</div>
 <div class="assign-ticket-container">
   <h2>🎯 Assign Ticket</h2>
-
-  <!-- <p><strong>Ticket ID:</strong> {{ ticketId }}</p> -->
 
   <div class="form-group">
     <label>Ticket ID:</label>
@@ -15,11 +7,18 @@
   </div>
 
   <div class="form-group">
-    <label>Department ID:</label>
-    <input type="number" [(ngModel)]="departmentId" />
+    <label>Select Department:</label>
+    <select [(ngModel)]="departmentId" class="custom-select">
+      <option [ngValue]="1">IT Department</option>
+      <option [ngValue]="2">Non-IT Department</option>
+      <option [ngValue]="3">HR / Finance</option>
+    </select>
   </div>
 
-  <button (click)="assign()">Assign</button>
+  <!-- Button group for side-by-side layout -->
+  <div class="button-group">
+    <button (click)="assign()">Assign</button>
+  </div>
 
   <p class="loading" *ngIf="loading">Processing...</p>
   <p class="error" *ngIf="isError">{{ message }}</p>

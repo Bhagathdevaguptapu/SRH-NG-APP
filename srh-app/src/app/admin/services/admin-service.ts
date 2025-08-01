@@ -1,6 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { EmployeeDTO, TicketFeedbackDTO, TicketSummary } from '../models/admin.model';
+
+interface ApiResponse<T> {
+  status: string;
+  message?: string | null;
+  data: T;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +32,20 @@ export class AdminService {
     return this.httpClient.post<any>(`${this.baseUrl}/ticket/cancel`, request);
   }
 
-  getAllFeedbacks() {
-  return this.httpClient.get<any>(`${this.baseUrl}/feedbacks`);
-}
+
+  getAllFeedbacks(): Observable<ApiResponse<TicketFeedbackDTO[]>> {
+    return this.httpClient.get<ApiResponse<TicketFeedbackDTO[]>>(`${this.baseUrl}/feedbacks`);
+  }
+
+  getAllEmployees(): Observable<ApiResponse<EmployeeDTO[]>> {
+    return this.httpClient.get<ApiResponse<EmployeeDTO[]>>(`${this.baseUrl}/employees/tickets`);
+  }
+
+  getAllTickets(): Observable<ApiResponse<TicketSummary[]>> {
+    return this.httpClient.get<ApiResponse<TicketSummary[]>>(`${this.baseUrl}/employees/tickets`);
+  }
 
 
- 
+
+
 }

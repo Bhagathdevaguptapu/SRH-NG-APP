@@ -3,24 +3,28 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../services/admin-service';
 import { CancelTicketRequest } from '../../models/admin.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cancel-ticket',
+  standalone: true,               // Needed if you use imports in Component decorator
   imports: [FormsModule, CommonModule],
   templateUrl: './cancel-ticket.html',
-  styleUrl: './cancel-ticket.css'
+  styleUrls: ['./cancel-ticket.css']  // Note: 'styleUrls' is plural, not 'styleUrl'
 })
 export class CancelTicket {
   @Input() ticketId: number | null | undefined = null;
   cancelReason = '';
   @Output() assignmentCompleted = new EventEmitter<void>();
 
-
   message = '';
   isError = false;
   loading = false;
 
-  constructor(private adminService: AdminService) { }
+  // Inject Router and AdminService
+  constructor(private adminService: AdminService, private router: Router) { }
+
+
 
   cancel() {
     if (!this.ticketId || !this.cancelReason.trim()) {
@@ -55,5 +59,4 @@ export class CancelTicket {
       },
     });
   }
-
 }

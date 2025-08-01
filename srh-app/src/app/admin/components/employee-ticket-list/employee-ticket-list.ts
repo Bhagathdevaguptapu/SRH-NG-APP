@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AssignTicket } from "../assign-ticket/assign-ticket";
 import { CancelTicket } from "../cancel-ticket/cancel-ticket";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-ticket-list',
@@ -23,7 +24,7 @@ export class EmployeeTicketList {
   showCancelModal = false;
   selectedTicket: TicketSummary | null = null;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private router: Router) { }
 
   fetchEmployeeTickets() {
     if (!this.employeeId) {
@@ -79,6 +80,10 @@ export class EmployeeTicketList {
     this.closeAssignPopup();            // Close modal
     this.closeCancelPopup();          // Close cancel modal
     this.fetchEmployeeTickets();        // Reload employee tickets
+  }
+
+  goBack() {
+    this.router.navigate(['/admin-home']);  // or [''] if home is root
   }
 
 }
