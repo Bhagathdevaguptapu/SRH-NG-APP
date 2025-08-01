@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RaiseTicketDTO } from '../../models/ticket.model';
 import { EmployeeTicketService } from '../../services/employee-ticket';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './raise-ticket.html',
   styleUrls: ['./raise-ticket.css']
 })
-export class RaiseTicket {
+export class RaiseTicket implements OnInit {
   ticket: RaiseTicketDTO = {
     title: '',
     description: '',
@@ -26,11 +26,20 @@ export class RaiseTicket {
 
   constructor(private ticketService: EmployeeTicketService, private router: Router) {}
 
+  ngOnInit(): void {
+    const empIdStr = localStorage.getItem('employeeId');
+    if (empIdStr) {
+      this.ticket.employeeId = parseInt(empIdStr, 10);
+    } else {
+      this.errorMsg = 'Employee ID not found. Please login again.';
+    }
+  }
+
   raiseTicket() {
     console.log("Raise ticket triggered", this.ticket);
 
-    if (!this.ticket.title.trim() || !this.ticket.description.trim() || this.ticket.employeeId <= 0) {
-      this.errorMsg = "All fields are required and employee ID must be valid.";
+    if (!this.ticket.title.trim() || !this.ticket.description.trim()) {
+      this.errorMsg = "Title and description are required.";
       return;
     }
 
@@ -42,11 +51,7 @@ export class RaiseTicket {
       next: (res: { message: any }) => {
         this.loading = false;
         this.message = res.message || "Ticket raised successfully.";
-
-        // Redirect to home after 2 seconds
-        setTimeout(() => {
-          this.router.navigate(['home']);
-        }, 2000);
+        setTimeout(() => this.router.navigate(['home']), 2000);
       },
       error: (err: any) => {
         this.loading = false;

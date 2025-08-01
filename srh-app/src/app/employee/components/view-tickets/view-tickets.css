@@ -1,188 +1,169 @@
-/* Full height layout with footer at bottom */
+/* ===============================
+   Base Layout and Wrapper
+================================ */
 html, body {
   height: 100%;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f4f8;
 }
 
-.app-wrapper {
-  min-height: 100vh;
+.page-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Main view card */
-.view-container {
+.main-wrapper {
   flex: 1;
-  max-width: 900px;
-  margin: 80px auto 40px;
-  padding: 50px 40px;
-  background: linear-gradient(145deg, #e1f5fe, #ffffff);
-  border-radius: 24px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
-  position: relative;
-  animation: fadeIn 0.4s ease-out;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  box-sizing: border-box;
 }
 
-/* Footer styling */
-.page-footer {
-  text-align: center;
-  padding: 20px 16px;
-  background-color: #e8f0fe;
-  color: #444;
-  font-size: 13px;
-  border-top: 1px solid #cbd5e0;
-  margin-top: auto;
-}
-
-/* Top logo */
+/* ===============================
+   Logo & Heading
+================================ */
 .logo-top-right {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 .logo-top-right img {
-  height: 55px;
+  height: 40px;
 }
 
-/* Heading */
-h2 {
+.page-heading {
   text-align: center;
-  color: #0a0a0a;
-  font-size: 32px;
-  font-weight: bold;
+  color: #002b5b;
+  font-size: 30px;
+  font-weight: 700;
   margin-bottom: 30px;
 }
 
-/* Search bar styles */
-.search-bar {
+/* ===============================
+   Messages
+================================ */
+.error-msg, .loading-msg {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.error-msg {
+  color: #e53935;
+}
+
+.loading-msg {
+  color: #1976d2;
+}
+
+/* ===============================
+   Card Grid Layout
+================================ */
+.card-grid {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 30px;
   flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
-.input-id {
-  padding: 12px 16px;
-  font-size: 15px;
-  border: 1px solid #cbd5e0;
-  border-radius: 10px;
-  width: 230px;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.input-id:focus {
-  outline: none;
-  border-color: #42a5f5;
-  box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.3);
-  background-color: #fff;
-}
-
-/* Buttons */
-.get-btn,
-.back-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 22px;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.get-btn:hover,
-.back-btn:hover {
-  background-color: #0056b3;
-  transform: scale(1.04);
-}
-
-/* Ticket card styles */
+/* ===============================
+   Ticket Card Styles
+================================ */
 .ticket-card {
-  background-color: #ffffff;
+  width: 300px;
+  background: linear-gradient(to bottom right, #ffffff, #f8fafd);
+  border-left: 6px solid #0077cc;
   border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.3s;
+  position: relative;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
 }
 
 .ticket-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: #005fa3;
 }
 
-.ticket-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.ticket-title {
-  font-size: 18px;
+/* Card Content */
+.ticket-card h3 {
+  margin: 0 0 10px;
+  color: #0077cc;
+  font-size: 22px;
   font-weight: 600;
-  color: #2c3e50;
 }
 
-.view-btn {
-  background-color: #17a2b8;
-  color: #fff;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.view-btn:hover {
-  background-color: #138496;
-}
-
-.ticket-details {
-  border-top: 1px solid #e2e8f0;
-  margin-top: 12px;
-  padding-top: 12px;
-  color: #444;
+.ticket-card p {
+  margin: 6px 0;
+  color: #333;
   font-size: 14.5px;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
-.error {
-  color: #e63946;
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 15px;
+/* Badge Style for Status */
+.ticket-card p strong {
+  color: #005fa3;
 }
 
-.loading {
-  text-align: center;
-  font-style: italic;
-  color: #777;
-  margin-bottom: 15px;
+.ticket-card p:last-child {
+  margin-bottom: 0;
 }
 
-.back-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-/* Animation */
-@keyframes fadeIn {
+/* Animation Keyframe */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ===============================
+   Back Button
+================================ */
+.back-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.back-home-btn {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.back-home-btn:hover {
+  background-color: #005fa3;
+  transform: scale(1.05);
+}
+
+/* ===============================
+   Footer
+================================ */
+.page-footer {
+  background-color: #cdedf0;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #555;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-top: auto;
 }

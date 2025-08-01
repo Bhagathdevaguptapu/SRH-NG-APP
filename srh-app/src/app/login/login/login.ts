@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -13,7 +12,6 @@ import { LoginService } from '../service/login-service';
   styleUrl: './login.css'
 })
 export class Login {
-
   loginData: LoginRequest = {
     email: '',
     password: '',
@@ -25,26 +23,38 @@ export class Login {
   constructor(private loginservice: LoginService, private router: Router) {}
 
   onSubmit() {
-    this.loginservice.login(this.loginData).subscribe({
-      next: (response) => {
-        if (response.status === 'success') {
-          if (this.loginData.role === 'admin') {
-            this.router.navigate(['admin-home']);
-          } else if (this.loginData.role === 'employee') {
-            
+  this.loginservice.login(this.loginData).subscribe({
+    next: (response) => {
+      console.log('Login Response:', response);
+
+      if (response.status === 'success') {
+        if (this.loginData.role === 'employee') {
+          const empId = response.id;  // 👈 use `id` instead of `data.employeeId`
+
+          if (empId) {
+            localStorage.setItem('employeeId', empId.toString());
             this.router.navigate(['home']);
-          } else if (this.loginData.role === 'department') {
-            this.router.navigate(['/department/dashboard']);
+          } else {
+            this.errorMsg = 'Employee ID not found.';
           }
-        } else {
-          this.errorMsg = response.message;
+
+        } else if (this.loginData.role === 'admin') {
+          this.router.navigate(['admin-home']);
+
+        } else if (this.loginData.role === 'department') {
+          this.router.navigate(['/department/dashboard']);
         }
-      },
-      error: (err) => {
-        this.errorMsg = 'Login failed. Please try again.';
+
+      } else {
+        this.errorMsg = response.message || 'Login failed.';
       }
-    });
-  }
+    },
+    error: () => {
+      this.errorMsg = 'Login failed. Please try again.';
+    }
+  });
+}
+
 
   resetForm() {
     this.loginData = { email: '', password: '', role: '' as any };

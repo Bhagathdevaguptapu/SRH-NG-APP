@@ -7,4 +7,5 @@ export interface LoginRequest {
 export interface LoginResponse {
   status: string;
   message: string;
+  id?: number;         // 👈 Update this to match backend
 }

@@ -10,45 +10,41 @@
       </div>
 
       <div class="card-body">
+        <!-- Dropdown to select ticket -->
         <div class="form-group">
-          <label for="ticketId">Ticket ID:</label>
-          <input
-            type="number"
-            id="ticketId"
-            class="form-control"
-            [(ngModel)]="feedback.ticketId"
-            placeholder="Enter Ticket ID"
-          />
+          <label for="selectedTicket">Select Ticket:</label>
+          <select id="selectedTicket" class="form-control" [(ngModel)]="selectedTicketId" (change)="onTicketSelect()">
+            <option value="" disabled selected>Select a ticket</option>
+            <option *ngFor="let ticket of tickets" [value]="ticket.ticketId">
+              {{ ticket.ticketId }} - {{ ticket.title }}
+            </option>
+          </select>
         </div>
 
-        <div class="form-group">
-          <label for="feedbackText">Feedback:</label>
-          <textarea
-            id="feedbackText"
-            class="form-control"
-            rows="4"
-            [(ngModel)]="feedback.feedbackText"
-            placeholder="Enter your feedback"
-          ></textarea>
-        </div>
+        <!-- Show only when a ticket is selected -->
+        <div *ngIf="selectedTicketId">
+          <p class="ticket-description"><strong>Description:</strong> {{ selectedTicket?.description }}</p>
 
-        <!-- Buttons Side-by-Side -->
-        <div class="button-group">
-          <button
-            class="btn-submit"
-            (click)="submitFeedback()"
-            [disabled]="loading"
-          >
-            {{ loading ? 'Submitting...' : 'Submit Feedback' }}
-          </button>
+          <div class="form-group">
+            <label for="feedbackText">Feedback:</label>
+            <textarea
+              id="feedbackText"
+              class="form-control"
+              rows="4"
+              [(ngModel)]="feedback.feedbackText"
+              placeholder="Enter your feedback"
+            ></textarea>
+          </div>
 
-          <button
-            type="button"
-            class="back-btn"
-            (click)="goToHome()"
-          >
-            Back to Home
-          </button>
+          <div class="button-group">
+            <button class="btn-submit" (click)="submitFeedback()" [disabled]="loading">
+              {{ loading ? 'Submitting...' : 'Submit Feedback' }}
+            </button>
+
+            <button type="button" class="back-btn" (click)="goToHome()">
+              Back to Home
+            </button>
+          </div>
         </div>
 
         <!-- Status Messages -->

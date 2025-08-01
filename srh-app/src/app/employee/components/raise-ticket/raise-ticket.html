@@ -1,3 +1,4 @@
+<!-- raise-ticket.html -->
 <div class="page-wrapper">
 
   <div class="logo-top-right">
@@ -33,18 +34,6 @@
         ></textarea>
       </div>
 
-      <div class="form-group">
-        <label for="employeeId">Employee ID</label>
-        <input
-          id="employeeId"
-          type="number"
-          [(ngModel)]="ticket.employeeId"
-          name="employeeId"
-          placeholder="e.g., 1234"
-          required
-        />
-      </div>
-
       <div class="button-row">
         <button type="submit" class="submit-btn" [disabled]="loading">
           {{ loading ? 'Submitting...' : '🚀 Submit Ticket' }}
@@ -57,8 +46,7 @@
     <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
   </div>
 </div>
-
-<!-- Footer outside wrapper -->
+<br/><br/><br/>
 <footer class="dashboard-footer">
   <p>&copy; 2025 Ticketing System — All rights reserved.</p>
 </footer>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,10 +14,9 @@ type TicketWithExpand = Ticket & { expanded?: boolean };
   templateUrl: './view-tickets.html',
   styleUrls: ['./view-tickets.css']
 })
-export class ViewTicketsComponent {
+export class ViewTicketsComponent implements OnInit {
   employeeId: number | null = null;
   tickets: TicketWithExpand[] = [];
-
   errorMsg: string = '';
   loading: boolean = false;
 
@@ -26,12 +25,22 @@ export class ViewTicketsComponent {
     private router: Router
   ) {}
 
+  ngOnInit() {
+    const storedId = localStorage.getItem('employeeId');
+    if (storedId) {
+      this.employeeId = parseInt(storedId, 10);
+      this.viewTickets();
+    } else {
+      this.errorMsg = 'You are not logged in properly.';
+    }
+  }
+
   viewTickets() {
     this.errorMsg = '';
     this.tickets = [];
 
     if (!this.employeeId) {
-      this.errorMsg = 'Please enter a valid Employee ID';
+      this.errorMsg = 'Invalid Employee ID';
       return;
     }
 
@@ -49,10 +58,9 @@ export class ViewTicketsComponent {
           this.errorMsg = res.message || 'No tickets found.';
         }
       },
-      error: (err) => {
+      error: () => {
         this.loading = false;
         this.errorMsg = 'Server error while fetching tickets.';
-        console.error(err);
       }
     });
   }

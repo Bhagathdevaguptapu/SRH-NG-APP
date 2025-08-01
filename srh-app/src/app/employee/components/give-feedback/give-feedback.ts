@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FeedbackDTO } from '../../models/ticket.model';
-import { EmployeeTicketService } from '../../services/employee-ticket';
 import { Router } from '@angular/router';
+import { Ticket, FeedbackDTO } from '../../models/ticket.model';
+import { EmployeeTicketService } from '../../services/employee-ticket';
 
 @Component({
   selector: 'app-give-feedback',
@@ -13,7 +13,11 @@ import { Router } from '@angular/router';
   templateUrl: './give-feedback.html',
   styleUrls: ['./give-feedback.css']
 })
-export class GiveFeedback {
+export class GiveFeedback implements OnInit {
+  tickets: Ticket[] = [];
+  selectedTicketId: number | null = null;
+  selectedTicket: Ticket | undefined;
+
   feedback: FeedbackDTO = {
     ticketId: 0,
     feedbackText: ''
@@ -25,9 +29,36 @@ export class GiveFeedback {
 
   constructor(private ticketService: EmployeeTicketService, private router: Router) {}
 
-  submitFeedback() {
+  ngOnInit(): void {
+    const empId = localStorage.getItem('employeeId');
+    if (empId) {
+      const id = +empId;
+      this.ticketService.viewTickets(id).subscribe({
+        next: (res: any) => {
+          if (res.status === 'success' && res.data && res.data.tickets) {
+            this.tickets = res.data.tickets;
+          } else {
+            this.tickets = [];
+          }
+        },
+        error: () => {
+          this.errorMsg = "Failed to load tickets.";
+        }
+      });
+    }
+  }
+
+  onTicketSelect(): void {
+    this.selectedTicket = this.tickets.find(t => t.ticketId === +this.selectedTicketId!);
+    this.feedback.ticketId = this.selectedTicketId!;
+    this.feedback.feedbackText = '';
+    this.message = '';
+    this.errorMsg = '';
+  }
+
+  submitFeedback(): void {
     if (!this.feedback.ticketId || !this.feedback.feedbackText.trim()) {
-      this.errorMsg = "Ticket ID and feedback are required.";
+      this.errorMsg = "Please enter feedback before submitting.";
       return;
     }
 
@@ -39,20 +70,16 @@ export class GiveFeedback {
       next: (res: any) => {
         this.loading = false;
         this.message = res.message || "Feedback submitted successfully.";
-
-        // Redirect after 2 seconds
-        setTimeout(() => {
-          this.router.navigate(['home']);
-        }, 2000);
+        setTimeout(() => this.router.navigate(['home']), 2000);
       },
-      error: (err: any) => {
+      error: () => {
         this.loading = false;
-        console.error("Error submitting feedback:", err);
         this.errorMsg = "Failed to submit feedback.";
       }
     });
   }
-   goToHome() {
+
+  goToHome(): void {
     this.router.navigate(['home']);
   }
 }

@@ -1,169 +1,222 @@
-/* Layout wrapper to support sticky footer */
+/* --------- Global Reset & Base --------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #d0e7ff, #e1f1ff);
+  color: #1f2937;
+}
+
+/* --------- Logo Positioning --------- */
+.logo-top-right {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.2rem 2rem;
+}
+
+.logo-top-right img {
+  height: 44px;
+  transition: transform 0.3s ease;
+}
+
+.logo-top-right img:hover {
+  transform: scale(1.05);
+}
+
+/* --------- Layout Structure --------- */
 .layout-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Centering card container */
 .card-container {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-  background: none;
-  flex: 1; /* Ensures footer sticks to bottom if content is short */
-  font-family: 'Segoe UI', sans-serif;
-  position: relative;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  animation: fadeSlideIn 0.8s ease;
 }
 
-/* Feedback card styling */
+/* --------- Beautiful Glass Card --------- */
 .card {
-  background: linear-gradient(145deg, #e1f5fe, #ffffff);
-  border-radius: 20px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
-  max-width: 520px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  max-width: 650px;
   width: 100%;
-  animation: fadeIn 0.4s ease-out;
-  padding-bottom: 25px;
+  transition: transform 0.4s ease;
 }
 
-.card-header {
-  background: linear-gradient(to right, #e3f2fd, #bbdefb);
-  padding: 22px;
-  text-align: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom: 1px solid #c5dff6;
+.card:hover {
+  transform: translateY(-6px);
 }
 
+/* --------- Card Header --------- */
 .card-header h3 {
-  margin: 0;
-  font-size: 22px;
-  color: #1a1a1a;
-  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #007bff;
+  border-left: 4px solid #007bff;
+  padding-left: 12px;
+  animation: fadeIn 0.6s ease;
 }
 
-.card-body {
-  padding: 24px;
-}
-
+/* --------- Form Group --------- */
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 1.5rem;
 }
 
 label {
-  display: block;
-  margin-bottom: 6px;
   font-weight: 600;
-  color: #333;
-  font-size: 15px;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #374151;
 }
 
-input.form-control,
+select.form-control,
 textarea.form-control {
-  width: 90%;
-  padding: 12px 14px;
-  border: 1px solid #cbd5e0;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #d1d5db;
   border-radius: 10px;
-  font-size: 15px;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-  resize: none;
-}
-
-input.form-control:focus,
-textarea.form-control:focus {
-  outline: none;
-  border-color: #42a5f5;
   background-color: #ffffff;
-  box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.25);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Buttons side by side */
+select.form-control:focus,
+textarea.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* --------- Description --------- */
+.ticket-description {
+  background-color: #e9f4ff;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid #007bff;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* --------- Button Group --------- */
 .button-group {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .btn-submit,
 .back-btn {
-  flex: 1;
-  padding: 12px;
-  background-color: #2196f3;
-  color: white;
-  font-weight: 600;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 10px;
-  font-size: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-.btn-submit:hover,
+.btn-submit {
+  background-color: #007bff;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 16px rgba(0, 91, 187, 0.25);
+}
+
+.back-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
 .back-btn:hover {
-  background-color: #1976d2;
-  transform: scale(1.04);
+  background-color: #e2e6ea;
 }
 
-.btn-submit:active,
-.back-btn:active {
-  transform: scale(0.97);
-}
-
-/* Status messages */
+/* --------- Status Messages --------- */
 .status-message {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 15px;
+  margin-top: 1.5rem;
 }
 
 .loading {
-  color: #ff9800;
+  color: #007bff;
+  font-style: italic;
 }
 
 .success {
-  color: #2e7d32;
+  color: #198754;
   font-weight: 600;
 }
 
 .error {
-  color: #c62828;
+  color: #dc3545;
   font-weight: 600;
 }
 
-/* Logo */
-.logo-top-right {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  z-index: 1000;
-}
-
-.logo-top-right img {
-  height: 55px;
-}
-
-/* Footer */
+/* --------- Footer --------- */
 .page-footer {
   text-align: center;
-  padding: 20px 16px;
-  background-color: #e8f0fe;
-  color: #444;
-  font-size: 14px;
-  border-top: 1px solid #cfd8dc;
+  padding: 1.2rem;
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-size: 0.95rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
 }
 
-/* Animation */
-@keyframes fadeIn {
+/* --------- Animations --------- */
+@keyframes fadeSlideIn {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 600px) {
+  .card {
+    padding: 2rem 1.5rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-submit,
+  .back-btn {
+    width: 100%;
+  }
+
+  .logo-top-right {
+    justify-content: center;
   }
 }
