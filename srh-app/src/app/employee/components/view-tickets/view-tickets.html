@@ -1,0 +1,38 @@
+<!-- Page Container -->
+<div class="page-container">
+  <div class="main-wrapper">
+    <!-- Logo Top Right -->
+    <div class="logo-top-right">
+      <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Logo" />
+    </div>
+
+    <!-- Heading -->
+    <h2 class="page-heading">My Tickets</h2><br/><br/>
+
+    <!-- Error or Loading -->
+    <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <p class="loading-msg" *ngIf="loading">Fetching your tickets...</p>
+
+    <!-- Ticket Cards -->
+    <div class="card-grid">
+      <div *ngFor="let ticket of tickets" class="ticket-card">
+        <h3>{{ ticket.title }}</h3>
+        <p><strong>Ticket ID:</strong> {{ ticket.ticketId }}</p>
+        <p><strong>Description:</strong> {{ ticket.description }}</p>
+        <p><strong>Status:</strong> {{ ticket.status }}</p>
+        <p><strong>Created At:</strong> {{ ticket.createdAt | date: 'short' }}</p>
+      </div>
+    </div>
+    <br/><br/>
+
+    <!-- Back Button -->
+    <div class="back-btn-wrapper">
+      <button class="back-home-btn" (click)="goBack()">Back</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>&copy; 2025 Ticketing System — All rights reserved.</p>
+  </footer>
+</div>

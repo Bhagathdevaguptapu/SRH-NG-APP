@@ -1,0 +1,224 @@
+/* 🌈 Beautiful animated background */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb, #fbc7b8, #fce4ec);
+  background-size: 400% 400%;
+  animation: gradientAnimation 20s ease infinite;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism container */
+.workflow-container {
+  max-width: 850px;
+  margin: auto;
+  padding: 35px 25px;
+  background: rgba(255 255 255 / 0.25);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(31, 38, 135, 0.3);
+  color: #1b263b;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.workflow-container:hover {
+  box-shadow: 0 12px 36px rgba(31, 38, 135, 0.5);
+}
+
+/* Header */
+.workflow-container h1 {
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  font-size: 2.2rem;
+  animation: blink 1.5s infinite;
+}
+
+/* Card grid */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* Card styles */
+.workflow-card {
+  background-color: #ffffffcc;
+  border: 2px solid #4a90e2;
+  border-radius: 12px;
+  width: 200px;
+  padding: 20px 15px;
+  text-align: center;
+  color: #4a90e2;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.15);
+  font-family: 'Comic Sans MS', cursive;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.workflow-card:hover {
+  background-color: #4a90e2;
+  color: white;
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.4);
+}
+
+.workflow-card h3 {
+  margin: 10px 0 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.workflow-card p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Header with logo */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo-left {
+  position: absolute;
+  left: 1rem;
+}
+
+.logo-left img {
+  max-width: 140px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-left img:hover {
+  transform: scale(1.05);
+}
+
+.header-container h1 {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5em;
+  color: #007cf0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-in-out;
+}
+
+.header-container h1:hover {
+  color: #4b5563;
+  transform: scale(1.05);
+}
+
+/* Blink animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Logout section */
+.logout-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .workflow-container {
+    padding: 30px 20px;
+    max-width: 95%;
+  }
+
+  .workflow-card {
+    width: 42%;
+    padding: 18px 14px;
+  }
+
+  .workflow-container h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .workflow-card {
+    width: 100%;
+  }
+
+  .workflow-card p{
+    font-size: 5rem;
+  }
+
+  .workflow-container {
+    margin: 20px 10px;
+    padding: 25px 15px;
+  }
+
+  .workflow-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .logo-left {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0;
+  background-color: #3498db;
+  color: white;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 0.85rem;
+}

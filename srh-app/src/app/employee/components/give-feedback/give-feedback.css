@@ -1,0 +1,222 @@
+/* --------- Global Reset & Base --------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #d0e7ff, #e1f1ff);
+  color: #1f2937;
+}
+
+/* --------- Logo Positioning --------- */
+.logo-top-right {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.2rem 2rem;
+}
+
+.logo-top-right img {
+  height: 44px;
+  transition: transform 0.3s ease;
+}
+
+.logo-top-right img:hover {
+  transform: scale(1.05);
+}
+
+/* --------- Layout Structure --------- */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.card-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  animation: fadeSlideIn 0.8s ease;
+}
+
+/* --------- Beautiful Glass Card --------- */
+.card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  max-width: 650px;
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* --------- Card Header --------- */
+.card-header h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #007bff;
+  border-left: 4px solid #007bff;
+  padding-left: 12px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* --------- Form Group --------- */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+select.form-control,
+textarea.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+select.form-control:focus,
+textarea.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* --------- Description --------- */
+.ticket-description {
+  background-color: #e9f4ff;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid #007bff;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* --------- Button Group --------- */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.btn-submit,
+.back-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 16px rgba(0, 91, 187, 0.25);
+}
+
+.back-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.back-btn:hover {
+  background-color: #e2e6ea;
+}
+
+/* --------- Status Messages --------- */
+.status-message {
+  margin-top: 1.5rem;
+}
+
+.loading {
+  color: #007bff;
+  font-style: italic;
+}
+
+.success {
+  color: #198754;
+  font-weight: 600;
+}
+
+.error {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+/* --------- Footer --------- */
+.page-footer {
+  text-align: center;
+  padding: 1.2rem;
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-size: 0.95rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
+/* --------- Animations --------- */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 600px) {
+  .card {
+    padding: 2rem 1.5rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-submit,
+  .back-btn {
+    width: 100%;
+  }
+
+  .logo-top-right {
+    justify-content: center;
+  }
+}
