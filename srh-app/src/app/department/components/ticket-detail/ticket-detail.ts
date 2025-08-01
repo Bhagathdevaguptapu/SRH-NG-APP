@@ -1,27 +1,48 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  AfterViewChecked,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import { TicketService } from '../../services/ticket';
 import { Ticket } from '../../models/ticket.model';
-import { CommonModule } from '@angular/common';
+import { Chart, registerables } from 'chart.js';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ticket-detail',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [DatePipe, FormsModule, CommonModule ],
   templateUrl: './ticket-detail.html',
-  styleUrl: './ticket-detail.css'
+  styleUrls: ['./ticket-detail.css']
 })
-export class TicketDetail {
+export class TicketDetail implements AfterViewChecked {
   departmentId: number | null = null;
   tickets: Ticket[] = [];
-  errorMsg: string = '';
-  successMsg: string = '';
-  loading: boolean = false;
+  errorMsg = '';
+  successMsg = '';
+  loading = false;
+  showCharts = false;
 
-  constructor(private ticketService: TicketService) {}
+  @ViewChild('statusPieChart') pieChartRef!: ElementRef<HTMLCanvasElement>;
+  private pieChart!: Chart;
+
+  constructor(private ticketService: TicketService) {
+    Chart.register(...registerables);
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.showCharts && this.pieChartRef && !this.pieChart) {
+      this.initChart();
+    }
+  }
 
   fetchTickets() {
     this.successMsg = '';
     this.errorMsg = '';
+    this.showCharts = false;
+
     if (!this.departmentId) {
       this.errorMsg = 'Please enter a valid Department ID';
       return;
@@ -33,6 +54,9 @@ export class TicketDetail {
         this.loading = false;
         if (resp.status === 'success') {
           this.tickets = resp.data;
+          this.successMsg = `${this.tickets.length} tickets loaded`;
+          this.showCharts = true;
+          this.pieChart = undefined as any; // Reset chart to re-initialize
         } else {
           this.errorMsg = resp.message;
           this.tickets = [];
@@ -41,6 +65,7 @@ export class TicketDetail {
       error: () => {
         this.loading = false;
         this.errorMsg = 'Failed to fetch tickets.';
+        this.tickets = [];
       }
     });
   }
@@ -52,7 +77,7 @@ export class TicketDetail {
       next: (resp) => {
         if (resp.status === 'success') {
           this.successMsg = resp.message;
-          this.fetchTickets(); // Refresh tickets
+          this.fetchTickets();
         } else {
           this.errorMsg = resp.message;
         }
@@ -73,7 +98,7 @@ export class TicketDetail {
       next: (resp) => {
         if (resp.status === 'success') {
           this.successMsg = resp.message;
-          this.fetchTickets(); // Refresh tickets
+          this.fetchTickets();
         } else {
           this.errorMsg = resp.message;
         }
@@ -82,5 +107,50 @@ export class TicketDetail {
         this.errorMsg = 'Error while closing ticket.';
       }
     });
+  }
+
+  private initChart() {
+    const ctx = this.pieChartRef.nativeElement.getContext('2d');
+    if (!ctx) return;
+
+    const statusCount = this.getStatusCount();
+    const labels = Object.keys(statusCount);
+    const data = Object.values(statusCount);
+
+    this.pieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Ticket Status',
+          data: data,
+          backgroundColor: [
+            '#2b7bff',
+            '#4caf50',
+            '#f44336',
+            '#ff9800',
+            '#9c27b0',
+            '#ffc107'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  }
+
+  private getStatusCount(): { [key: string]: number } {
+    const counts: { [key: string]: number } = {};
+    for (const ticket of this.tickets) {
+      const status = ticket.status.toUpperCase();
+      counts[status] = (counts[status] || 0) + 1;
+    }
+    return counts;
   }
 }

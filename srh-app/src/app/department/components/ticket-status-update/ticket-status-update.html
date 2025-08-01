@@ -1,37 +1,72 @@
 <div class="status-update-container">
   <h2>Update Ticket Status</h2>
-<img src="https://assets.upstox.com/content/assets/images/cms/2024314/coforge.webp" alt="Logo" class="top-right-logo" />
-  <div class="form-group">
-    <label for="ticketId">Ticket ID:</label>
-    <input
-      type="number"
-      id="ticketId"
-      [(ngModel)]="ticketId"
-      placeholder="Enter Ticket ID"
-    />
+  <img
+    src="https://assets.upstox.com/content/assets/images/cms/2024314/coforge.webp"
+    alt="Logo"
+    class="top-right-logo"
+  />
+
+  <div class="form-card">
+    <!-- Department Dropdown -->
+    <div class="form-group">
+      <label for="deptId">Select Department:</label>
+      <select id="deptId" [(ngModel)]="selectedDepartmentId" class="styled-select">
+        <option [ngValue]="null" disabled>Select Department</option>
+        <option [ngValue]="1">IT Support</option>
+        <option [ngValue]="2">Non IT Support</option>
+        <option [ngValue]="3">HR Support</option>
+      </select>
+    </div>
+
+    <!-- Load Tickets Button -->
+    <div class="form-group">
+      <button class="secondary-btn" (click)="fetchDepartmentTickets()">Load Tickets</button>
+    </div>
+
+    <!-- Ticket Dropdown -->
+    <div class="form-group" *ngIf="departmentTickets.length > 0">
+      <label for="ticketId">Select Ticket:</label>
+      <select id="ticketId" [(ngModel)]="ticketId" (change)="onTicketSelect()" class="styled-select">
+        <option [ngValue]="null" disabled>Select Ticket</option>
+        <option *ngFor="let ticket of departmentTickets" [ngValue]="ticket.ticketId">
+          {{ ticket.ticketId }} - {{ ticket.description | slice:0:30 }}...
+        </option>
+      </select>
+    </div>
+
+    <!-- New layout container for sliding cards -->
+    <div class="two-cards-container" *ngIf="ticketId">
+      <!-- Current Status card sliding from right -->
+      <div class="ticket-info-card slide-in-right">
+        <h3>Current Status</h3>
+        <p><strong><span class="status">{{ selectedTicket?.status }}</span> </strong> </p>
+      </div>
+
+      <!-- Update Status form sliding from left -->
+      <div class="update-status-card slide-in-left">
+        <div class="form-group">
+          <h3>New Status</h3>
+          <select id="newStatus" class="styled-select" [(ngModel)]="newStatus">
+            <option value="" disabled>Select status</option>
+            <option *ngFor="let status of statusOptions" [value]="status">
+              {{ status }}
+            </option>
+          </select>
+        </div>
+        <button (click)="updateStatus()" [disabled]="loading || !newStatus">Update Status</button>
+      </div>
+    </div>
+
+    <!-- Feedback messages -->
+    <div class="loading" *ngIf="loading">
+      <span class="spinner"></span> Updating status...
+    </div>
+    <p class="error fade-in" *ngIf="isError">{{ errorMsg }}</p>
+    <p class="success fade-in" *ngIf="successMsg">{{ successMsg }}</p>
   </div>
-
-  <div class="form-group">
-    <label for="newStatus">New Status:</label>
-    <select id="newStatus" [(ngModel)]="newStatus">
-      <option value="" disabled>Select status</option>
-      <option *ngFor="let status of statusOptions" [value]="status">
-        {{ status }}
-      </option>
-    </select>
-  </div>
-
-  <button (click)="updateStatus()" [disabled]="loading">Update Status</button>
-
-  <p class="loading" *ngIf="loading">Updating status...</p>
-  <p class="error" *ngIf="isError">{{ errorMsg }}</p>
-  <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
 </div>
 
-
-<a class="back-arrow" href="home">
-  ← Back
-</a>
+<a class="back-arrow" href="home">← Back</a>
 
 <footer>
   <p>© 2025 Department Ticketing System | Version 1.0</p>

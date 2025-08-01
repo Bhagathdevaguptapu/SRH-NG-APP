@@ -172,6 +172,22 @@ body {
   transition: border-color 0.3s ease;
 }
 
+.input-section select {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  width: 180px;
+  transition: border-color 0.3s ease;
+}
+
+.input-section select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.4);
+}
+
+
 .input-section input[type='number']:focus {
   border-color: var(--primary);
   box-shadow: 0 0 10px rgba(255, 111, 97, 0.4);

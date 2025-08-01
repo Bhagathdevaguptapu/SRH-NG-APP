@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './home.css'
 })
 export class Home {
-   departmentId: number = 0;
+  departmentId: number = 0;
 
   tickets: Ticket[] = [];
   totalTickets: number = 0;
@@ -25,7 +25,7 @@ export class Home {
 
   fetchTickets(): void {
     if (!this.departmentId || this.departmentId <= 0) {
-      this.errorMsg = 'Please enter a valid department ID.';
+      this.errorMsg = 'Please select a valid department.';
       this.resetCounts();
       return;
     }
@@ -56,7 +56,6 @@ export class Home {
     });
   }
 
-  
   resetCounts(): void {
     this.tickets = [];
     this.totalTickets = 0;

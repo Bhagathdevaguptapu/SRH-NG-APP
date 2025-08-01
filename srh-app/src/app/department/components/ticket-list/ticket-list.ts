@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './ticket-list.css'
 })
 export class TicketList{
- departmentId: number | null = null;
+ departmentId: number = 0; // default to 0 for dropdown
   tickets: any[] = [];
   isError: boolean = false;
   errorMsg: string = '';
@@ -19,9 +19,9 @@ export class TicketList{
   constructor(private ticketService: TicketService) {}
 
   fetchTickets() {
-    if (!this.departmentId) {
+    if (!this.departmentId || this.departmentId <= 0) {
       this.isError = true;
-      this.errorMsg = 'Please enter a valid Department ID';
+      this.errorMsg = 'Please select a valid Department';
       this.tickets = [];
       return;
     }

@@ -231,3 +231,26 @@ footer {
   z-index: 1000;
   cursor: pointer; /* Optional: makes it look clickable */
 }
+
+
+/* Dropdown Styling */
+.styled-select {
+  padding: 10px 14px;
+  border: 1.8px solid #ccc;
+  border-radius: 8px;
+  width: 200px;
+  font-size: 1rem;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23666' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: center;
+  transition: border-color 0.3s ease;
+}
+
+.styled-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 5px var(--primary);
+  outline: none;
+}

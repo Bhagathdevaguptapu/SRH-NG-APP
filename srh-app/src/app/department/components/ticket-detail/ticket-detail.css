@@ -248,6 +248,15 @@ footer {
   cursor: pointer; /* Optional: makes it look clickable */
 }
 
+/* Limit pie chart size */
+.pie-chart canvas {
+  width: 260px !important;
+  height: 260px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+
 
 /* Responsive for tablets and smaller screens */
 @media (max-width: 768px) {

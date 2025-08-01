@@ -1,5 +1,3 @@
-
-
 <div class="navbar">
   <div class="nav-container">
     <a href="/" class="nav-logo">
@@ -22,8 +20,13 @@
   </div>
 
   <div class="input-section">
-    <label for="deptId">Department ID:</label>
-    <input type="number" [(ngModel)]="departmentId" id="deptId" />
+    <label for="deptId">Select Department:</label>
+    <select id="deptId" [(ngModel)]="departmentId">
+      <option [value]="0" disabled selected>Select Department</option>
+      <option [value]="1">IT Support</option>
+      <option [value]="2">Non IT Support</option>
+      <option [value]="3">HR Support</option>
+    </select>
     <button (click)="fetchTickets()">Load Stats</button>
   </div>
 
@@ -48,6 +51,4 @@
 
 <footer>
   <p>© 2025 Department Ticketing System | Version 1</p>
-  </footer>
-
-
+</footer>
