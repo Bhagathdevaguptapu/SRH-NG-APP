@@ -7,7 +7,7 @@
     </div>
 
     <!-- Heading -->
-    <h2 class="page-heading">My Tickets</h2><br/><br/>
+    <h2 class="page-heading">My Tickets</h2><br /><br />
 
     <!-- Error or Loading -->
     <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
@@ -20,10 +20,23 @@
         <p><strong>Ticket ID:</strong> {{ ticket.ticketId }}</p>
         <p><strong>Description:</strong> {{ ticket.description }}</p>
         <p><strong>Status:</strong> {{ ticket.status }}</p>
-        <p><strong>Created At:</strong> {{ ticket.createdAt | date: 'short' }}</p>
+
+        <!-- Optional: Created At (if backend sends it) -->
+        <!-- <p><strong>Created At:</strong> {{ ticket.createdAt | date: 'short' }}</p> -->
+
+        <!-- Department Comment -->
+        <ng-container *ngIf="ticket.commentText; else noComment">
+          <p><strong>Comment:</strong> {{ ticket.commentText }}</p>
+          <p><strong>Commented By:</strong> {{ ticket.commenterName }} ({{ ticket.commenterRole }})</p>
+        </ng-container>
+
+        <!-- Fallback if no comment -->
+        <ng-template #noComment>
+          <p><em>No comment provided yet.</em></p>
+        </ng-template>
       </div>
     </div>
-    <br/><br/>
+    <br /><br />
 
     <!-- Back Button -->
     <div class="back-btn-wrapper">

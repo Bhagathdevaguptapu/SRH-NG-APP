@@ -29,7 +29,7 @@ export class Login {
 
       if (response.status === 'success') {
         if (this.loginData.role === 'employee') {
-          const empId = response.id;  // 👈 use `id` instead of `data.employeeId`
+          const empId = response.id;  
 
           if (empId) {
             localStorage.setItem('employeeId', empId.toString());

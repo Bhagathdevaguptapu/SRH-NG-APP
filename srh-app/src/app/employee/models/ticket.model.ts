@@ -16,7 +16,9 @@ export interface Ticket {
   title: string;
   description: string;
   status: string;
-  createdAt?: string;
+ commentText?: string;
+ commenterName?: string;
+  commenterRole?: string;
 }
 
 export interface EmployeeDTO {
