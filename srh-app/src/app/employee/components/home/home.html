@@ -1,0 +1,51 @@
+
+<!-- Logo at top right -->
+<div class="logo-top-right">
+  <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo">
+</div>
+
+
+<div class="dashboard-wrapper">
+  <div class="glass-card">
+    <!-- Logout button -->
+    <button class="logout-btn" (click)="logout()">Logout</button>
+
+    <!-- Heading -->
+    <div class="dashboard-header">
+      <h1>Employee Dashboard</h1>
+      <p class="subtitle">Take charge of your tickets — select an action below.</p>
+    </div>
+
+    <!-- Action Cards -->
+    <div class="card-grid">
+      <div class="action-card raise">
+        <a routerLink="/raise-ticket">
+          <div class="emoji">📝</div>
+          <span>Raise Ticket</span>
+        </a>
+      </div>
+      <div class="action-card view">
+        <a routerLink="/view-tickets">
+          <div class="emoji">📄</div>
+          <span>View My Tickets</span>
+        </a>
+      </div>
+      <div class="action-card cancel">
+        <a routerLink="/cancel-ticket">
+          <div class="emoji">❌</div>
+          <span>Cancel Ticket</span>
+        </a>
+      </div>
+      <div class="action-card feedback">
+        <a routerLink="/give-feedback">
+          <div class="emoji">💬</div>
+          <span>Give Feedback</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-footer">
+  <p>&copy; 2025 Ticketing System — All rights reserved.</p>
+</div>

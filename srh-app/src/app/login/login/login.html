@@ -1,0 +1,90 @@
+<div class="container" [class.blur-background]="modalVisible">
+  <div class="left-pane">
+    <h1>
+      Service
+      <span class="orange"> Request</span>
+      Handling
+    </h1>
+    <p>
+      Welcome to the Service Request Handling system. Streamline your requests
+      efficiently and stay connected.
+    </p>
+    <!-- Trigger Button to open modal -->
+    <button class="btn-login" (click)="openModal()" aria-haspopup="dialog" aria-controls="loginModal">
+      Login
+    </button>
+  </div>
+
+  <div class="right-pane"></div>
+</div>
+
+<!-- Modal Popup -->
+<div
+  class="modal-overlay"
+  id="loginModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+  tabindex="-1"
+  [class.show]="modalVisible"
+  [attr.aria-hidden]="!modalVisible"
+>
+  <div class="login-card" role="document">
+    <!-- Close button -->
+    <button (click)="closeModal()" class="close-btn" aria-label="Close Login Form" id="closeModalBtn">&times;</button>
+    <h2 id="modalTitle">🔐 Login</h2>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate id="loginForm">
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="loginData.email"
+        required
+        autocomplete="username"
+        #email="ngModel"
+        aria-describedby="emailError"
+      />
+      <div *ngIf="email.invalid && email.touched" style="color: red;" id="emailError">Email is required and must be valid.</div>
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="loginData.password"
+        required
+        autocomplete="current-password"
+        #password="ngModel"
+        aria-describedby="passwordError"
+      />
+      <div *ngIf="password.invalid && password.touched" style="color: red;" id="passwordError">Password is required.</div>
+
+      <label for="role">Role:</label>
+      <select
+        id="role"
+        name="role"
+        [(ngModel)]="loginData.role"
+        required
+        #role="ngModel"
+        aria-describedby="roleError"
+      >
+        <option value="" disabled>Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="employee">Employee</option>
+        <option value="department">Department</option>
+      </select>
+      <div *ngIf="role.invalid && role.touched" style="color: red;" id="roleError">Please select a role.</div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="loginForm.invalid" id="submitBtn">Submit</button>
+        <button type="button" (click)="resetForm()" id="resetBtn">Reset</button>
+      </div>
+    </form>
+
+    <p class="error" aria-live="assertive" id="errorMsg" style="color: red;" *ngIf="errorMsg">{{ errorMsg }}</p>
+  </div>
+</div>
+

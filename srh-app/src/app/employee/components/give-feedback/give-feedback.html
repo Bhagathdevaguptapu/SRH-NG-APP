@@ -1,0 +1,64 @@
+<div class="logo-top-right">
+  <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Coforge Logo">
+</div>
+
+<div class="layout-wrapper">
+  <div class="card-container">
+    <div class="card">
+      <div class="card-header">
+        <h3>Give Feedback</h3>
+      </div>
+
+      <div class="card-body">
+        <!-- Dropdown to select ticket -->
+        <div class="form-group">
+          <label for="selectedTicket">Select Ticket:</label>
+          <select id="selectedTicket" class="form-control" [(ngModel)]="selectedTicketId" (change)="onTicketSelect()">
+            <option value="" disabled selected>Select a ticket</option>
+            <option *ngFor="let ticket of tickets" [value]="ticket.ticketId">
+              {{ ticket.ticketId }} - {{ ticket.title }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Show only when a ticket is selected -->
+        <div *ngIf="selectedTicketId">
+          <p class="ticket-description"><strong>Description:</strong> {{ selectedTicket?.description }}</p>
+
+          <div class="form-group">
+            <label for="feedbackText">Feedback:</label>
+            <textarea
+              id="feedbackText"
+              class="form-control"
+              rows="4"
+              [(ngModel)]="feedback.feedbackText"
+              placeholder="Enter your feedback"
+            ></textarea>
+          </div>
+
+          <div class="button-group">
+            <button class="btn-submit" (click)="submitFeedback()" [disabled]="loading">
+              {{ loading ? 'Submitting...' : 'Submit Feedback' }}
+            </button>
+
+            <button type="button" class="back-btn" (click)="goToHome()">
+              Back to Home
+            </button>
+          </div>
+        </div>
+
+        <!-- Status Messages -->
+        <div class="status-message">
+          <p *ngIf="loading" class="loading">Submitting feedback...</p>
+          <p *ngIf="message" class="success">{{ message }}</p>
+          <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>&copy; 2025 Ticketing System — All rights reserved.</p>
+  </footer>
+</div>

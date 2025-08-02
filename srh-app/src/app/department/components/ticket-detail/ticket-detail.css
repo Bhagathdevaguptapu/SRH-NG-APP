@@ -1,0 +1,353 @@
+.ticket-detail-container {
+  max-width: 900px;
+  margin: 80px auto 40px auto; /* moved down */
+  padding: 30px 40px;
+  border-radius: 12px;
+  background: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+h2 {
+  text-align: center;
+  color: #2b7bff;
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+label {
+  font-weight: 600;
+  font-size: 1rem;
+  min-width: 110px;
+  text-align: right;
+  color: #555;
+}
+
+input[type='number'] {
+  padding: 10px 14px;
+  width: 200px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type='number']:focus {
+  border-color: #2b7bff;
+  outline: none;
+  box-shadow: 0 0 6px rgba(43, 123, 255, 0.5);
+}
+
+button {
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 8px rgba(43,123,255,0.4);
+  background-color: #2b7bff;
+  color: white;
+}
+
+button:hover {
+  background-color: #1f5ecc;
+  box-shadow: 0 5px 15px rgba(31,94,204,0.6);
+}
+
+/* Messages */
+.success, .error, .loading {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.success {
+  color: #388e3c;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.loading {
+  color: #666;
+  font-style: italic;
+}
+
+/* Tickets list container */
+.tickets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Single ticket card */
+.ticket-card {
+  background-color: #f9faff;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 6px 18px rgba(43,123,255,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.ticket-card:hover {
+  box-shadow: 0 10px 30px rgba(43,123,255,0.3);
+  transform: translateY(-4px);
+}
+
+.ticket-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 70%;
+  font-size: 1rem;
+  color: #222;
+}
+
+.ticket-info strong {
+  color: #2b7bff;
+}
+
+.status {
+  display: inline-block;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  user-select: none;
+}
+
+/* Status colors */
+.status.assigned,
+.status.closed,
+.status.open {
+  background-color: #d4edda;
+  color: #388e3c;
+}
+
+.status.raised
+.status.issue_resolved {
+  background-color: #d4edda;
+  color: #8b7434;
+}
+
+.status.started,
+.status.cancelled{
+  background-color: #ffebeb;
+  color: #d32f2f;
+}
+
+.status.in_progress {
+  background-color: #fff3cd;
+  color: #ff9800;
+}
+
+/* Actions container */
+.ticket-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Accept button */
+.accept-btn {
+  background-color: #4caf50;
+  box-shadow: 0 3px 8px rgba(76,175,80,0.5);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accept-btn:hover {
+  background-color: #3a9d3a;
+  box-shadow: 0 5px 15px rgba(58,157,58,0.7);
+}
+
+/* Close button */
+.close-btn {
+  background-color: #f44336;
+  box-shadow: 0 3px 8px rgba(244,67,54,0.5);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #b92c24;
+  box-shadow: 0 5px 15px rgba(185,44,36,0.7);
+}
+
+/* Back arrow */
+.back-arrow {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: #555;
+  font-weight: 700;
+  padding: 8px 15px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 100;
+}
+
+.back-arrow:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+footer {
+  padding: 15px 20px;
+  text-align: center;
+  color: #1a1515;
+  background: #cac7c7;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.top-right-logo {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 180px;   /* Adjust size as needed */
+  height: auto;
+  z-index: 1000;
+  cursor: pointer; /* Optional: makes it look clickable */
+}
+
+/* Limit pie chart size */
+.pie-chart canvas {
+  width: 260px !important;
+  height: 260px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+/* Responsive for tablets and smaller screens */
+@media (max-width: 768px) {
+  .ticket-detail-container {
+    padding: 20px 15px;
+    margin: 20px 15px;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  label {
+    text-align: left;
+    min-width: auto;
+    font-size: 0.95rem;
+  }
+
+  input[type='number'] {
+    width: 90%;
+    max-width: none;
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .tickets-list {
+    gap: 15px;
+  }
+
+  .ticket-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .ticket-info {
+    max-width: 100%;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .ticket-actions {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .accept-btn, .close-btn {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 0.95rem;
+  }
+
+  .back-arrow {
+    top: 15px;
+    left: 15px;
+    font-size: 1.1rem;
+    padding: 6px 12px;
+  }
+
+  .top-right-logo {
+    width: 120px;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* Responsive for very small phones */
+@media (max-width: 400px) {
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .ticket-info {
+    font-size: 0.85rem;
+  }
+
+  .accept-btn, .close-btn {
+    font-size: 0.9rem;
+  }
+}

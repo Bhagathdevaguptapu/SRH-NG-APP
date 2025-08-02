@@ -1,0 +1,355 @@
+/* Reset and base */
+* {
+  box-sizing: border-box;
+}
+body, html {
+  margin: 0; padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  overflow-x: hidden;
+}
+
+/* Container */
+.container {
+  display: flex;
+  height: 100vh;
+  width: 90vw;          /* widen container */
+  max-width: 1400px;    /* bigger max width */
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;            /* more spacing */
+  margin: auto;         /* center horizontally */
+  transition: filter 0.3s ease;
+}
+
+/* Blur when modal active */
+.container.blur-background {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* LEFT SIDE */
+.left-pane {
+  flex: 1;
+  color: #2c3e50;
+  padding: 2rem 1rem 2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 650px;      /* bigger max width */
+  user-select: none;
+  align-items: flex-start;
+
+  opacity: 0;
+  transform: translateX(-80px);
+  animation: slideInLeft 1s ease forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.left-pane h1 {
+  margin: 0 0 1rem 0;
+  font-size: 4.5rem;    /* bigger heading */
+  font-weight: 900;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  user-select: none;
+}
+
+.left-pane h1 .orange {
+  color: #c55a11; /* dark orange */
+  margin-left: 6px;
+  text-shadow: none;
+}
+
+.left-pane p {
+  font-size: 1.5rem;    /* bigger paragraph */
+  line-height: 1.6;
+  margin-bottom: 3.5rem;
+  color: #374151;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeftPara 1s ease 0.3s forwards;
+  align-self: stretch;
+  text-align: left;
+}
+@keyframes slideInLeftPara {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Login Button */
+.btn-login {
+  background: #2563eb;
+  color: white;
+  padding: 1.4rem 4rem;    /* bigger padding */
+  font-size: 1.75rem;     /* bigger font */
+  font-weight: 700;
+  border-radius: 60px;    /* proportional */
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.5);
+  transition: background 0.3s ease, transform 0.3s ease;
+  width: fit-content;
+  user-select: none;
+  align-self: flex-start;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeftBtn 1s ease 0.6s forwards, floatHorizontal 3s ease-in-out infinite;
+  text-decoration: none;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-login:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* Floating animation for both login button and right image */
+@keyframes floatHorizontal {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes slideInLeftBtn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* RIGHT SIDE — image with SAME floating animation */
+.right-pane {
+  flex: 1;
+  max-width: 650px;      /* bigger image width */
+  height: 550px;         /* bigger image height */
+  background: url('https://www.shutterstock.com/image-vector/sysadmin-repairing-computer-technician-mending-600nw-1968264763.jpg') no-repeat center center;
+  background-size: contain;
+  border-radius: 20px;
+  user-select: none;
+  box-shadow: none;
+  background-color: transparent;
+
+  opacity: 0;
+  transform: translateX(0);
+  animation: slideInRight 1s ease 0.8s forwards, floatHorizontal 3s ease-in-out infinite;
+
+  order: 2;
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* POPUP LOGIN CARD */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+  backdrop-filter: none;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.login-card {
+  background: white;
+  padding: 3.5rem 4rem;       /* bigger padding */
+  border-radius: 20px;
+  width: 460px;               /* bigger width */
+  max-width: 95vw;
+  box-shadow:
+    0 15px 40px rgba(37, 99, 235, 0.3);
+  position: relative;
+  animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card h2 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 2.7rem;         /* bigger modal heading */
+  color: #2563eb;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: none;
+}
+
+.login-card label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.3rem;         /* bigger label font */
+  color: #2c3e50;
+  user-select: none;
+}
+
+.login-card input,
+.login-card select {
+  width: 100%;
+  padding: 1rem 1.3rem;      /* bigger input */
+  margin-bottom: 1.8rem;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 1.2rem;
+  color: #34495e;
+  background-color: #f9fafb;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-card input:focus,
+.login-card select:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: none;
+  background-color: #fff;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.actions button {
+  flex: 1;
+  padding: 1.1rem 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+
+.actions button[type="submit"] {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  box-shadow:
+    0 4px 15px rgba(59, 130, 246, 0.6),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.actions button[type="submit"]:hover {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  box-shadow:
+    0 6px 18px rgba(30, 64, 175, 0.8),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.actions button[type="reset"] {
+  background: #6b7280;
+  color: #f9fafb;
+  box-shadow:
+    0 4px 10px rgba(107, 114, 128, 0.4);
+}
+
+.actions button[type="reset"]:hover {
+  background: #4b5563;
+  box-shadow:
+    0 6px 14px rgba(75, 85, 99, 0.6);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 2.2rem;
+  cursor: pointer;
+  color: #2563eb;
+  font-weight: 900;
+  user-select: none;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  line-height: 1;
+}
+.close-btn:hover {
+  color: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    width: 95vw;
+  }
+  .left-pane, .right-pane {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+  .right-pane {
+    height: 320px;
+    margin-bottom: 3rem;
+  }
+  .left-pane h1 {
+    font-size: 3.5rem;
+  }
+  .btn-login {
+    font-size: 1.5rem;
+    padding: 1.2rem 3rem;
+  }
+  .login-card {
+    width: 95vw;
+    padding: 3rem 2rem;
+  }
+  .login-card h2 {
+    font-size: 2.2rem;
+  }
+  .login-card label {
+    font-size: 1.1rem;
+  }
+  .login-card input,
+  .login-card select {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+  .actions button {
+    font-size: 1.1rem;
+    padding: 0.9rem 0;
+  }
+}
+
+
+

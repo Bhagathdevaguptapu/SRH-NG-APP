@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+  <!-- Logo -->
+  <div class="logo-top-right">
+    <img src="https://www.coforge.com/hubfs/website-assets/coforge-logo.svg" alt="Logo" />
+  </div>
+
+  <!-- Heading -->
+  <h2 class="page-heading">Cancel Your Tickets</h2>
+
+  <!-- Messages -->
+  <div *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</div>
+  <div *ngIf="message" class="success-msg">{{ message }}</div>
+
+  <!-- No Tickets Message -->
+  <div *ngIf="tickets.length === 0" class="no-tickets-msg">
+    No tickets available to cancel.
+  </div>
+
+  <!-- Tickets Grid -->
+  <div class="card-grid">
+    <div class="ticket-card" *ngFor="let ticket of tickets">
+      <h3>{{ ticket.title }}</h3>
+      <p><strong>ID:</strong> {{ ticket.ticketId }}</p>
+      <p><strong>Description:</strong> {{ ticket.description }}</p>
+
+      <div class="card-actions">
+        <button (click)="cancel(ticket.ticketId)" [disabled]="loading">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <div class="back-btn-wrapper">
+    <button class="back-home-btn" (click)="goToHome()">Back to Home</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    &copy; 2025 Ticketing System — All rights reserved.
+  </footer>
+</div>

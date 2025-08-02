@@ -1,0 +1,56 @@
+<div class="ticket-detail-container">
+  <h2>Department Ticket Actions</h2>
+  <img src="https://assets.upstox.com/content/assets/images/cms/2024314/coforge.webp" alt="Logo" class="top-right-logo" />
+
+  <div class="form-group">
+    <label for="deptId">Department ID:</label>
+    <input type="number" id="deptId" [(ngModel)]="departmentId" />
+    <button (click)="fetchTickets()" [disabled]="loading">Load Tickets</button>
+  </div>
+
+  <div class="dept-list">
+    <p><strong>Departments:</strong></p>
+    <ul>
+      <li>1 - IT Support</li>
+      <li>2 - Non IT Support</li>
+      <li>3 - HR Support</li>
+    </ul>
+  </div>
+
+  <p class="loading" *ngIf="loading">Loading...</p>
+  <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+  <div class="charts-container" *ngIf="showCharts && tickets.length > 0">
+    <h3>Ticket Status Distribution</h3>
+    <div class="pie-charts">
+      <div class="pie-chart">
+        <canvas #statusPieChart></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="tickets-list" *ngIf="tickets.length > 0">
+    <div class="ticket-card" *ngFor="let ticket of tickets">
+      <div class="ticket-info">
+        <div><strong>ID:</strong> {{ ticket.ticketId }}</div>
+        <div>
+          <strong>Status:</strong>
+          <span class="status {{ ticket.status.toLowerCase() }}">{{ ticket.status }}</span>
+        </div>
+        <div><strong>Description:</strong> {{ ticket.description }}</div>
+        <div><strong>Created:</strong> {{ ticket.createdAt | date: 'short' }}</div>
+        <div><strong>Updated:</strong> {{ ticket.updatedAt | date: 'short' }}</div>
+      </div>
+      <div class="ticket-actions" *ngIf="ticket.status.toUpperCase() !== 'CLOSED'">
+        <button *ngIf="ticket.status === 'ASSIGNED'" class="accept-btn" (click)="acceptTicket(ticket.ticketId)">Accept</button>
+        <button class="close-btn" (click)="closeTicket(ticket.ticketId)">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="back-arrow" href="dept-home">← Back</a>
+<footer>
+  <p>© 2025 Department Ticketing System | Version 1.0</p>
+</footer>
